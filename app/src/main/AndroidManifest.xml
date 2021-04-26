@@ -9,13 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOderingApp">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".user.Activity_User_Main"></activity>
+        <activity android:name=".rider.Activity_Rider_Main" />
+        <activity android:name=".Activity_Login" />
+        <activity
+            android:name=".ui.login.Activity_Login"
+            android:label="@string/title_activity__login" />
+        <activity android:name=".merchant.Activity_Merchant_Main" />
     </application>
 
 </manifest>
