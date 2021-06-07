@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+<!--    待处理订单编号-->
+    <LinearLayout
+        android:id="@+id/ordersWait_item_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+<!--        待处理订单编号，到100后从1开始重新计数-->
+        <TextView
+            android:id="@+id/ordersWaitList_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"/>
+<!--        订单备注-->
+        <TextView
+            android:id="@+id/ordersWait_Note"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="订单备注"
+            android:paddingLeft="10dp"/>
+
+<!--        订单状况-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="等待接单"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+<!--    分割线-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dip"
+        android:background="@drawable/divider"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"/>
+
+<!--    订单人信息-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--        接收人姓名-->
+            <TextView
+                android:id="@+id/ordersWait_ReceiveName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="程先生"/>
+<!--            接收人电话-->
+            <TextView
+                android:id="@+id/ordersWait_ReceivePhone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:text="12345678901"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ordersWait_AddressName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="地址信息"/>
+    </LinearLayout>
+
+    <!--    分割线-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dip"
+        android:background="@drawable/divider"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"/>
+
+    <!--    订单详细信息-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/orderDetails_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="商品名字"/>
+
+            <!--    数量-->
+            <TextView
+                android:id="@+id/orderDetails_num"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="数量 "
+                android:layout_marginLeft="20dp"/>
+
+            <!--    销售价格-->
+            <TextView
+                android:id="@+id/orderDetails_salePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="销售价格"
+                android:layout_marginLeft="20dp"/>
+
+            <!--    配送价格-->
+            <TextView
+                android:id="@+id/orderDetails_deliveryPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="配送价格"
+                android:layout_marginLeft="20dp"/>
+
+            <!--    总计-->
+            <TextView
+                android:id="@+id/orderDetails_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="总计"
+                android:layout_marginLeft="20dp"/>
+        </LinearLayout>
+
+        <com.example.foododeringapp.widget.EmptyRecyclerView
+            android:id="@+id/ordersWait_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <!--    分割线-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dip"
+        android:background="@drawable/divider"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"/>
+
+    <!--    订单金额-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="本单预计收入"/>
+
+<!--        总金额-->
+        <TextView
+            android:id="@+id/ordersWait_Amount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="100"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="元"/>
+
+    </LinearLayout>
+
+    <!--    分割线-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dip"
+        android:background="@drawable/divider"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"/>
+
+    <!--    接单操作控件-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_refuse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_common_item_bg"
+            android:text="拒单"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="接单"
+            android:layout_weight="3"/>
+    </LinearLayout>
+
+</LinearLayout>

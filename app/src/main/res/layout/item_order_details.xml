@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/ordersDetails_item_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+<!--    商品名字-->
+    <TextView
+        android:id="@+id/orderDetails_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="商品名字"/>
+
+<!--    数量-->
+    <TextView
+        android:id="@+id/orderDetails_num"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="数量 "
+        android:layout_marginLeft="20dp"/>
+
+<!--    销售价格-->
+    <TextView
+        android:id="@+id/orderDetails_salePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="30.00"
+        android:layout_marginLeft="20dp"/>
+
+<!--    配送价格-->
+    <TextView
+        android:id="@+id/orderDetails_deliveryPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="1.00"
+        android:layout_marginLeft="20dp"/>
+
+<!--    总计-->
+    <TextView
+        android:id="@+id/orderDetails_sum"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="31.00"
+        android:layout_marginLeft="20dp"/>
+
+
+</LinearLayout>
