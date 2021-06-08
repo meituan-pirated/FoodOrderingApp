@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    //可以直接传入url请求，查看收到的结果数据
+    public void addition_isCorrect() { assertEquals(4, 2 + 2);
     }
 }

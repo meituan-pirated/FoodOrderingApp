@@ -7,6 +7,7 @@
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_500">#06AE9E</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
@@ -18,7 +19,7 @@
 
     <!--Setting-->
     <color name="white_bg">#FFFFFF</color>
-<!--    <color name="dark_gray_bg">#F5F5F5</color>-->
+    <!--    <color name="dark_gray_bg">#F5F5F5</color>-->
     <color name="dark_gray_bg">#FBFCFC</color>
 
     <color name="light_gray_bg">#EDEDED</color>
@@ -26,4 +27,6 @@
     <color name="dividers">#F2F2F2</color>
     <color name="primary_text">#424242</color>
     <color name="secondary_text">#9e9e9e</color>
+
+    <color name="red">#F55549</color>
 </resources>

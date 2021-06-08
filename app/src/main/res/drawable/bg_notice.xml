@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--去掉上边框-->
+    <item
+        android:top="-1dp">
+        <shape>
+            <!-- 主体背景颜色值 -->
+            <solid android:color="@color/dividers" />
+            <!--边框的颜色-->
+            <stroke
+                android:width="5dp"
+                android:color="#81909A9E" />
+            <!--圆形-->
+            <corners
+                android:bottomLeftRadius="30dip"
+                android:bottomRightRadius="5dip"
+                android:topLeftRadius="0dip"
+                android:topRightRadius="30dip" />
+        </shape>
+    </item>
+</layer-list>
