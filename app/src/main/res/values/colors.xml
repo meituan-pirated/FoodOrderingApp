@@ -22,6 +22,7 @@
     <!--    <color name="dark_gray_bg">#F5F5F5</color>-->
     <color name="dark_gray_bg">#FBFCFC</color>
 
+    <color name="border_line">#c0c0c0</color>
     <color name="light_gray_bg">#EDEDED</color>
     <color name="divider">#DCDCDC</color>
     <color name="dividers">#F2F2F2</color>
@@ -29,4 +30,7 @@
     <color name="secondary_text">#9e9e9e</color>
 
     <color name="red">#F55549</color>
+    <color name="blue">#33b5e5</color>
+
+    <color name="transparent">#00000000</color>
 </resources>

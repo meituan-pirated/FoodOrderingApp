@@ -22,8 +22,8 @@ import com.example.foododeringapp.bean.Order;
 import com.example.foododeringapp.bean.OrderForR;
 import com.example.foododeringapp.rider.Activity_Rider_Main;
 import com.example.foododeringapp.rider.adapter.Adapter_OrdersUnderway;
+import com.example.foododeringapp.rider.service.RiderRequestUtility;
 import com.example.foododeringapp.widget.EmptyRecyclerView;
-import com.example.foododeringapp.service.RequestUtility;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 
 import java.util.List;
@@ -93,7 +93,7 @@ public class Fragment_Rider_Underway extends Fragment implements SwipeRefreshLay
             public void run() {
                 //加载recyclerView
                 try {
-                    ordersList = RequestUtility.getUnderwayOrdersForR(userId);   //获取数据库里本外卖员接的订单
+                    ordersList = RiderRequestUtility.getUnderwayOrdersForR(userId);   //获取数据库里本外卖员接的订单
                     handler.post(runnableOrderList);
                 } catch (Exception e) {
                     e.printStackTrace();

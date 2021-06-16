@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.ProgressDialog;
@@ -17,11 +16,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.foododeringapp.R;
-import com.example.foododeringapp.RecyclerViewActivity;
 import com.example.foododeringapp.bean.Order;
-import com.example.foododeringapp.merchant.Activity_Merchant_Main;
+import com.example.foododeringapp.rider.Activity_Rider_Main;
 import com.example.foododeringapp.rider.adapter.Adapter_OrdersNew;
-import com.example.foododeringapp.service.RequestUtility;
+import com.example.foododeringapp.rider.service.RiderRequestUtility;
 import com.example.foododeringapp.widget.EmptyRecyclerView;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 
@@ -93,7 +91,7 @@ public class Fragment_Rider_New extends Fragment implements SwipeRefreshLayout.O
         new Thread() {
             public void run() {
                 try {
-                    ordersList = RequestUtility.getRiderNewOrders(userId);
+                    ordersList = RiderRequestUtility.getRiderNewOrders(userId);
                     handler.post(runnableOrderList);
                 } catch (Exception e) {
                     e.printStackTrace();

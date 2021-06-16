@@ -18,9 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foododeringapp.R;
 import com.example.foododeringapp.bean.FoodRecordForR;
 import com.example.foododeringapp.bean.OrderDetailsForR;
+import com.example.foododeringapp.bean.Rider;
 import com.example.foododeringapp.control.BaseActivity;
 import com.example.foododeringapp.rider.adapter.Adapter_Food_Record;
-import com.example.foododeringapp.service.RequestUtility;
+import com.example.foododeringapp.rider.service.RiderRequestUtility;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class Activity_Order_details extends BaseActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rorder_details);
-        getIntentData();
+//        getIntentData();
         initView();
 
     }
@@ -87,7 +88,7 @@ public class Activity_Order_details extends BaseActivity implements View.OnClick
         toolbarText.setText("订单详情");
 
         //获取订单详细数据
-        orderDetails = RequestUtility.getOrderDetailsForR(orderID);
+        orderDetails = RiderRequestUtility.getOrderDetailsForR(orderID);
         arrayList = orderDetails.getFoodList(); //把食物记录先抓出来
 
         //获得所有控件
@@ -114,42 +115,42 @@ public class Activity_Order_details extends BaseActivity implements View.OnClick
         cost += 1; //加上配送费，配送费锁死就是1
         tv_cost.setText(nf.format(cost));
 
-        tv_userName.setText(userName);
-        tv_phoneNumber.setText(phoneNumber);
-        tv_address.setText(address);
-        if (sex != null) {
-            if (sex.equals("男")) {
-                tv_sex.setText("先生");
-            } else if (sex.equals("女")) {
-                tv_sex.setText("女士");
-            } else {
-                tv_sex.setText(sex);
-            }
-        }
+//        tv_userName.setText(userName);
+//        tv_phoneNumber.setText(phoneNumber);
+//        tv_address.setText(address);
+//        if (sex != null) {
+//            if (sex.equals("男")) {
+//                tv_sex.setText("先生");
+//            } else if (sex.equals("女")) {
+//                tv_sex.setText("女士");
+//            } else {
+//                tv_sex.setText(sex);
+//            }
+//        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tvBalance://结算
-                if (longitude <= 0 || latitude <= 0) {
-                    Util.showToast(Activity_Balance.this, "此收货地址未包含经纬度信息，请重新选择或新建地址");
-                } else {
-                    Activity_Payment.actionStart(Activity_Balance.this, userId, cost, statusCode, userName, email, sex, phoneNumber, nickname, address, avatar, arrayList, remarkContent, longitude, latitude);
-                }
-                break;
-            case R.id.ly_remarkInfo://备注信息
-                Intent intentRemark = new Intent(Activity_Balance.this, Activity_Remark.class);
-                startActivityForResult(intentRemark, 2);
-                break;
-            case R.id.ly_AddressInfo://地址信息
-                Intent intent = new Intent(context, Activity_Address.class);
-                intent.putExtra("remark", "结算页面");
-                startActivityForResult(intent, 1);
-                break;
-            default:
-                break;
-        }
+//            case R.id.tvBalance://结算
+//                if (longitude <= 0 || latitude <= 0) {
+//                    Util.showToast(Activity_Balance.this, "此收货地址未包含经纬度信息，请重新选择或新建地址");
+//                } else {
+//                    Activity_Payment.actionStart(Activity_Balance.this, userId, cost, statusCode, userName, email, sex, phoneNumber, nickname, address, avatar, arrayList, remarkContent, longitude, latitude);
+//                }
+//                break;
+//            case R.id.ly_remarkInfo://备注信息
+//                Intent intentRemark = new Intent(Activity_Balance.this, Activity_Remark.class);
+//                startActivityForResult(intentRemark, 2);
+//                break;
+//            case R.id.ly_AddressInfo://地址信息
+//                Intent intent = new Intent(context, Activity_Address.class);
+//                intent.putExtra("remark", "结算页面");
+//                startActivityForResult(intent, 1);
+//                break;
+//            default:
+//                break;
+//        }
     }
 
     /**
@@ -159,61 +160,61 @@ public class Activity_Order_details extends BaseActivity implements View.OnClick
      * @param resultCode
      * @param data
      */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case 1://地址
-                if (resultCode == RESULT_OK) {
-                    userName = data.getStringExtra("name");
-                    phoneNumber = data.getStringExtra("phoneNumber");
-                    sex = data.getStringExtra("sex");
-                    address = data.getStringExtra("address");
-                    longitude = data.getDoubleExtra("longitude", -1);
-                    latitude = data.getDoubleExtra("latitude", -1);
-
-                    tv_userName.setText(userName);
-                    tv_phoneNumber.setText(phoneNumber);
-                    tv_address.setText(address);
-                    if (sex.equals("男")) {
-                        tv_sex.setText("先生");
-                    } else if (sex.equals("女")) {
-                        tv_sex.setText("女士");
-                    } else {
-                        tv_sex.setText(sex);
-                    }
-                }
-                break;
-            case 2://备注
-                if (resultCode == RESULT_OK) {
-                    remarkContent = data.getStringExtra("remarkContent");
-                    tv_remarkContent.setText(remarkContent);
-                }
-                break;
-            default:
-                break;
-        }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        switch (requestCode) {
+//            case 1://地址
+//                if (resultCode == RESULT_OK) {
+//                    userName = data.getStringExtra("name");
+//                    phoneNumber = data.getStringExtra("phoneNumber");
+//                    sex = data.getStringExtra("sex");
+//                    address = data.getStringExtra("address");
+//                    longitude = data.getDoubleExtra("longitude", -1);
+//                    latitude = data.getDoubleExtra("latitude", -1);
+//
+//                    tv_userName.setText(userName);
+//                    tv_phoneNumber.setText(phoneNumber);
+//                    tv_address.setText(address);
+//                    if (sex.equals("男")) {
+//                        tv_sex.setText("先生");
+//                    } else if (sex.equals("女")) {
+//                        tv_sex.setText("女士");
+//                    } else {
+//                        tv_sex.setText(sex);
+//                    }
+//                }
+//                break;
+//            case 2://备注
+//                if (resultCode == RESULT_OK) {
+//                    remarkContent = data.getStringExtra("remarkContent");
+//                    tv_remarkContent.setText(remarkContent);
+//                }
+//                break;
+//            default:
+//                break;
+//        }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-            default:
-                break;
-        }
-        return true;
-    }
-
-    private void getIntentData() {
-        Intent intent = getIntent();
-        orderID = intent.getStringExtra("orderId");
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                finish();
+//                break;
+//            default:
+//                break;
+//        }
+//        return true;
+//    }
+//
+//    private void getIntentData() {
+//        Intent intent = getIntent();
+//        orderID = intent.getStringExtra("orderId");
+//
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//    }
 }

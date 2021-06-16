@@ -1,7 +1,6 @@
 package com.example.foododeringapp.rider.adapter;
 
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +38,7 @@ public class Adapter_Food_Record extends RecyclerView.Adapter<Adapter_Food_Recor
         return new ViewHolder(view);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+//    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         FoodRecordForR item = dataList.get(position);
@@ -65,7 +64,7 @@ public class Adapter_Food_Record extends RecyclerView.Adapter<Adapter_Food_Recor
             tvCount = (TextView) itemView.findViewById(R.id.count);
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.N)
+//        @RequiresApi(api = Build.VERSION_CODES.N)
         public void bindData(FoodRecordForR item) {
             this.item = item;
             tvName.setText(item.getName());

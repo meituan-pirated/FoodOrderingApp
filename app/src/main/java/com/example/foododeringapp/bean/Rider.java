@@ -1,68 +1,58 @@
 package com.example.foododeringapp.bean;
 
 public class Rider {
-    private String Id;
-    private String Name;
-    private String Email;
-    private String PhoneNumber;
-    private String Nickname;
-    private String Sex;
-    private String Avatar;//头像
+    private String rider_id;
+    private String name;
+    private String phoneNumber;
+    private String nickName;
+    private String sex;
+    private String avatar;//头像
 
-    public String getId() {
-        return Id;
+    public String getRider_id() {
+        return rider_id;
     }
 
-    public void setId(String id) {
-        Id = id;
+    public void setRider_id(String rider_id) {
+        this.rider_id = rider_id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
+        this.name = name;
     }
 
     public String getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getNickname() {
-        return Nickname;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setNickname(String nickname) {
-        Nickname = nickname;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getSex() {
-        return Sex;
+        return sex;
     }
 
     public void setSex(String sex) {
-        Sex = sex;
+        this.sex = sex;
     }
 
     public String getAvatar() {
-        return Avatar;
+        return avatar;
     }
 
     public void setAvatar(String avatar) {
-        Avatar = avatar;
+        this.avatar = avatar;
     }
-
 }

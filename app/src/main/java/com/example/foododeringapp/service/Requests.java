@@ -13,6 +13,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 /**
  * Request请求实现类
@@ -35,9 +36,11 @@ public class Requests implements RequestManager {
         String result = requestTask.get();
         Log.i("url", url);
         Log.i("result：", result);
+//        Log.i("type:", String.valueOf(typeOfT));
         //将获取的数据反序列化为对象
         Gson gson = new Gson();
         T target = gson.fromJson(result, typeOfT);
+//        Log.i("type-of-target:",String.valueOf(target));
         return target;
     }
 
@@ -59,10 +62,21 @@ public class Requests implements RequestManager {
      */
     @Override
     public String postForm(String url, String... params) throws Exception {
+        Log.i("url",url);
         RequestTask requestTask = new RequestTask();
         requestTask.executeRequest(url, RequestTask.REQUEST_MODE_POST, params);
         //返回state_code
         String result = requestTask.get();
+        Log.i("result: ", result);
+        return result;
+    }
+
+    public String postForm(Request request) throws Exception {
+        RequestTask requestTask = new RequestTask();
+        requestTask.executeRequest(request);
+        //返回state_code
+        String result = requestTask.get();
+        Log.i("result: ", result);
         return result;
     }
 
