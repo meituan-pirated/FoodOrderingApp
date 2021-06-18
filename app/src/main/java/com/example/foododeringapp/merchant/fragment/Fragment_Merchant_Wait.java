@@ -23,7 +23,9 @@ import com.example.foododeringapp.R;
 import com.example.foododeringapp.bean.Order;
 import com.example.foododeringapp.bean.RestFulBean;
 import com.example.foododeringapp.merchant.adapter.Adapter_OrdersWait;
-import com.example.foododeringapp.service.RequestUtility;
+import com.example.foododeringapp.merchant.service.MerchantPostUtility;
+import com.example.foododeringapp.merchant.service.MerchantRequestUtility;
+import com.example.foododeringapp.util.Util;
 import com.example.foododeringapp.widget.EmptyRecyclerView;
 import com.example.foododeringapp.merchant.Activity_Merchant_Main;
 import com.flipboard.bottomsheet.BottomSheetLayout;
@@ -110,7 +112,7 @@ public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayo
         new Thread() {
             public void run() {
                 try {
-                    ordersList = RequestUtility.getWaitOrders(business_id);
+                    ordersList = MerchantRequestUtility.getWaitOrders(business_id);
                     handler.post(runnableOrderList);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -126,7 +128,7 @@ public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayo
 
             if (ordersList != null && ordersList.size() > 0) {
 //                给ordersList创建RecyclerView
-                adapter = new Adapter_OrdersWait(ordersList, Fragment_Merchant_Wait.this, getActivity());
+                orderWaitAdapter = new Adapter_OrdersWait(ordersList, Fragment_Merchant_Wait.this, getActivity());
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                 recyclerView.setLayoutManager(layoutManager);
                 orderWaitAdapter = new Adapter_OrdersWait(ordersList, Fragment_Merchant_Wait.this, getActivity());
@@ -135,14 +137,6 @@ public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayo
             }
         }
     };
-
-    /**
-     * 下拉刷新事件
-     */
-    @Override
-    public void onRefresh() {
-
-    }
 
     /**
      * ---------数据的处理--------
@@ -155,7 +149,7 @@ public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayo
     /**
      * 根据订单编号获取订单状况
      *
-     * @param id 订单编号
+     * @param order_id 订单编号
      * @return
      */
     public void changeOrderStateByOrderId(int order_id, String state){
@@ -244,13 +238,13 @@ public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayo
             }
         }).start();
     }
-
-    /**
-     * 监听该界面中的组件
-     * @param v
-     */
-    @Override
-    public void onClick(View v) {
-
-    }
+//
+//    /**
+//     * 监听该界面中的组件
+//     * @param v
+//     */
+//    @Override
+//    public void onClick(View v) {
+//
+//    }
 }

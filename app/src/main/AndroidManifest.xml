@@ -23,10 +23,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
@@ -50,7 +48,7 @@
         <activity android:name=".merchant.Activity_Merchant_ProductInfo" />
         <activity android:name=".merchant.Activity_Merchant_StoreInfo" />
         <activity android:name=".merchant.Activity_Merchant_ProductInfoList" />
-        <activity android:name=".user.Activity_User_Main" />
+<!--        <activity android:name=".user.Activity_User_Main" />-->
         <activity android:name=".rider.Activity_Rider_Main" />
         <activity android:name=".rider.Activity_Edit_Account" />
         <activity android:name=".rider.Activity_Order_details" />
