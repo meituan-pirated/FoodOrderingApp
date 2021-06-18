@@ -6,7 +6,7 @@ public class OrderDetails {
 
     //将order与products的多对多关系，转化成中间表和各自的一对多关系
     //orderDetails为一的一方
-    private Products product;
+    private Products products;
 
     public int getOrder_details_id() {
         return order_details_id;
@@ -25,10 +25,10 @@ public class OrderDetails {
     }
 
     public Products getProduct() {
-        return product;
+        return products;
     }
 
     public void setProduct(Products product) {
-        this.product = product;
+        this.products = product;
     }
 }

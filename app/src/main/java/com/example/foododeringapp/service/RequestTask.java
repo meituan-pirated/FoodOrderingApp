@@ -48,6 +48,10 @@ public class RequestTask extends AsyncTask<Request, Void, String> {
         }
     }
 
+    public void executeRequest(Request request) {
+        requestPOST(request);
+    }
+
     /**
      * @param url    请求的URL地址
      * @param params 请求所需的参数
@@ -58,6 +62,11 @@ public class RequestTask extends AsyncTask<Request, Void, String> {
             builder.add(params[i], params[i + 1]);
         }
         Request request = new Request.Builder().post(builder.build()).url(url).build();
+        this.execute(request);
+    }
+
+
+    private void requestPOST(Request request) {
         this.execute(request);
     }
 

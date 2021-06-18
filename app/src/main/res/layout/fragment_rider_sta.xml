@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_notice_sta_module"
+                    android:layout_margin="10dp">
+
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:layout_marginVertical="20dp">
+
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:gravity="center"
+                            android:text="今日接单"
+                            android:textColor="@color/dividers"
+                            android:textSize="20sp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:gravity="center"
+                            android:text=""
+                            android:id="@+id/quantity"
+                            android:textColor="@color/dividers"
+                            android:textSize="35sp">
+
+                        </TextView>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:layout_marginVertical="20dp">
+
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:gravity="center"
+                            android:text="预计收入"
+                            android:textColor="@color/dividers"
+                            android:textSize="20sp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:layout_height="0dp"
+                            android:textColor="@color/dividers"
+                            android:text=""
+                            android:id="@+id/income"
+                            android:textSize="35sp">
+
+                        </TextView>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--    底部下拉控件-->
+                <com.flipboard.bottomsheet.BottomSheetLayout
+                    android:id="@+id/bottom_sheet_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!--            下拉刷新控件-->
+                    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                        android:id="@+id/swipeRefreshLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                        <!--    货品信息-->
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="历史完成订单"
+                                    android:layout_marginHorizontal="15dp"
+                                    android:paddingTop="10dp"
+                                    android:textSize="25dp">
+                                </TextView>
+
+                                <View
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/stroke"
+                                    android:layout_marginHorizontal="10dp"
+                                    android:background="@color/divider" />
+
+                                <com.example.foododeringapp.widget.EmptyRecyclerView
+                                    android:id="@+id/FinishedRecyclerView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+
+                        </LinearLayout>
+
+                    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                </com.flipboard.bottomsheet.BottomSheetLayout>
+</LinearLayout>
+
+
+
+
+
+

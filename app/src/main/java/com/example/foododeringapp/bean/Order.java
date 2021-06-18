@@ -1,5 +1,6 @@
 package com.example.foododeringapp.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -14,11 +15,12 @@ public class Order {
 
     private Address address; //地址信息
 
-    private List<OrderDetails> orderDetailsList; //订单详细信息
+    private ArrayList<OrderDetails> orderDetailsList; //订单详细信息
 
     private String OrderPrice;//实付金额
     private String OrderTime;
-    private String CommentState;//评论状态
+    private String arriveTime;
+    //private String CommentState;//评论状态
 
     private Integer riderScore;
     private Integer businessScore;
@@ -83,11 +85,11 @@ public class Order {
         this.address = address;
     }
 
-    public List<OrderDetails> getOrderDetailsList() {
+    public ArrayList<OrderDetails> getOrderDetailsList() {
         return orderDetailsList;
     }
 
-    public void setOrderDetailsList(List<OrderDetails> orderDetailsList) {
+    public void setOrderDetailsList(ArrayList<OrderDetails> orderDetailsList) {
         this.orderDetailsList = orderDetailsList;
     }
 
@@ -107,14 +109,6 @@ public class Order {
         OrderTime = orderTime;
     }
 
-    public String getCommentState() {
-        return CommentState;
-    }
-
-    public void setCommentState(String commentState) {
-        CommentState = commentState;
-    }
-
     public Integer getRiderScore() {
         return riderScore;
     }
@@ -129,5 +123,13 @@ public class Order {
 
     public void setBusinessScore(Integer businessScore) {
         this.businessScore = businessScore;
+    }
+
+    public String getArriveTime() {
+        return arriveTime;
+    }
+
+    public void setArriveTime(String arriveTime) {
+        this.arriveTime = arriveTime;
     }
 }

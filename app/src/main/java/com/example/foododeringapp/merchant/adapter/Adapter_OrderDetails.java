@@ -1,6 +1,7 @@
 package com.example.foododeringapp.merchant.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,16 +25,16 @@ import java.util.List;
 public class Adapter_OrderDetails extends RecyclerView.Adapter<Adapter_OrderDetails.ViewHolder>{
     private List<OrderDetails> mOrderDetailList;
     private LayoutInflater mInflater;
-    private Fragment_Merchant_Wait mContext;
-    private int mPosition;
+//    private Fragment_Merchant_Wait mContext;
+//    private int mPosition;
     private NumberFormat nf;
 
 
 
-    public Adapter_OrderDetails(List<OrderDetails> mOrderDetailList, Fragment_Merchant_Wait context, int  position) {
+    public Adapter_OrderDetails(List<OrderDetails> mOrderDetailList) {
         this.mOrderDetailList = mOrderDetailList;
-        this.mPosition = position;
-        this.mContext = context;
+//        this.mPosition = position;
+//        this.mContext = context;
         nf = NumberFormat.getCurrencyInstance();
         nf.setMaximumFractionDigits(2);
     }
@@ -45,18 +46,23 @@ public class Adapter_OrderDetails extends RecyclerView.Adapter<Adapter_OrderDeta
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order_details, parent, false);
 //        View view = mInflater.inflate(R.layout.item_order_details, parent, false);
         final ViewHolder holder = new ViewHolder(view);
+
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull Adapter_OrderDetails.ViewHolder holder, int position) {
         final OrderDetails orderDetails = mOrderDetailList.get(position);
+        Log.i("details-product",orderDetails.getProduct().getProductName());
+
+        Log.i("position",position+"");
         Products products = orderDetails.getProduct();
         holder.orderDetails_name.setText(products.getProductName());
         holder.orderDetails_num.setText(orderDetails.getAmount()+"");
         holder.orderDetails_salePrice.setText(products.getSalePrice()+"");
-        holder.orderDetails_deliveryPrice.setText(products.getDeliveryPrice()+"");
-        holder.orderDetails_sum.setText(((products.getSalePrice() + products.getDeliveryPrice())*orderDetails.getAmount())+"");
+//        holder.orderDetails_deliveryPrice.setText(products.getDeliveryPrice()+"");
+//        holder.orderDetails_sum.setText(((products.getSalePrice() + products.getDeliveryPrice())*orderDetails.getAmount())+"");
+        holder.orderDetails_sum.setText(((products.getSalePrice())*orderDetails.getAmount())+"");
 
     }
 
@@ -75,7 +81,7 @@ public class Adapter_OrderDetails extends RecyclerView.Adapter<Adapter_OrderDeta
             orderDetails_name = itemView.findViewById(R.id.orderDetails_name);
             orderDetails_num = itemView.findViewById(R.id.orderDetails_num);
             orderDetails_salePrice = itemView.findViewById(R.id.orderDetails_salePrice);
-            orderDetails_deliveryPrice = itemView.findViewById(R.id.orderDetails_deliveryPrice);
+//            orderDetails_deliveryPrice = itemView.findViewById(R.id.orderDetails_deliveryPrice);
             orderDetails_sum = itemView.findViewById(R.id.orderDetails_sum);
         }
     }

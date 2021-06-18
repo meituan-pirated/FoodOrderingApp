@@ -3,7 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_marginBottom="1dp"
+    android:layout_marginTop="1dp"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:paddingBottom="6dp"
+    android:layout_marginHorizontal="10dp"
+    android:paddingHorizontal="3dp"
+    android:paddingTop="6dp">
 
 
 <!--    待处理订单编号-->
@@ -92,46 +99,52 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:layout_marginHorizontal="10dp"
+            android:paddingHorizontal="3dp"
+            android:paddingTop="6dp">
             <TextView
                 android:id="@+id/orderDetails_name"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="商品名字"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:maxLines="1"
+                android:text="商品名"
+                android:textSize="16sp" />
 
-            <!--    数量-->
             <TextView
                 android:id="@+id/orderDetails_num"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="数量 "
-                android:layout_marginLeft="20dp"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:minWidth="20dp"
+                android:text="数量"
+                android:textSize="16sp" />
 
-            <!--    销售价格-->
             <TextView
                 android:id="@+id/orderDetails_salePrice"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="销售价格"
-                android:layout_marginLeft="20dp"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="单价"
+                android:textSize="16sp"/>
 
-            <!--    配送价格-->
-            <TextView
-                android:id="@+id/orderDetails_deliveryPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="配送价格"
-                android:layout_marginLeft="20dp"/>
 
-            <!--    总计-->
             <TextView
                 android:id="@+id/orderDetails_sum"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="总计"
-                android:layout_marginLeft="20dp"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="总价"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <com.example.foododeringapp.widget.EmptyRecyclerView

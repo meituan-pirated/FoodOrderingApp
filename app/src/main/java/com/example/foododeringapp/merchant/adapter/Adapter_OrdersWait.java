@@ -51,14 +51,18 @@ public class Adapter_OrdersWait extends RecyclerView.Adapter<Adapter_OrdersWait.
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_orders_wait, parent, false);
         final ViewHolder holder = new ViewHolder(view);
+
+        // 接单按钮对应的操作
         holder.btn_accept.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
+                //mContext是对应的fragement的Context
                 Fragment_Merchant_Wait fragment = mContext;
                 int position = holder.getAdapterPosition();
                 Order order = mOrderWaitList.get(position);
-                fragment.changeOrderStateById(order.getOrder_id(),"ING");
+                //调用fragment中的方法，实现数据库的修改
+                fragment.changeOrderStateByOrderId(order.getOrder_id(),"ING");
 
             }
         });
@@ -70,14 +74,18 @@ public class Adapter_OrdersWait extends RecyclerView.Adapter<Adapter_OrdersWait.
                 Fragment_Merchant_Wait fragment = mContext;
                int position = holder.getAdapterPosition();
                Order order = mOrderWaitList.get(position);
-               fragment.changeOrderStateById(order.getOrder_id(), "CANCEL");
-
+               fragment.changeOrderStateByOrderId(order.getOrder_id(), "CANCEL");
 
             }
         });
         return holder;
     }
 
+    /**
+     * 设置xml中组件的具体值
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.ordersWait_item_view.setTag(orderListNum);
@@ -89,7 +97,6 @@ public class Adapter_OrdersWait extends RecyclerView.Adapter<Adapter_OrdersWait.
         }
         final Order order = mOrderWaitList.get(position);
         holder.ordersWaitList_num.setText(orderListNum+"");
-        Log.i("orderNote:", order.getOrderNote()+"");
         holder.ordersWait_Note.setText(order.getOrderNote());
 
         holder.ordersWait_ReceiveName.setText(order.getAddress().getReceiveName());
@@ -97,12 +104,31 @@ public class Adapter_OrdersWait extends RecyclerView.Adapter<Adapter_OrdersWait.
         holder.ordersWait_AddressName.setText(order.getAddress().getAddressName());
 
         //给订单详情创建RecyclerView的adapter
-        Log.i("details-product-name:",order.getOrderDetailsList().get(position).getProduct().getProductName());
-        adapter = new Adapter_OrderDetails(order.getOrderDetailsList(), mContext, position);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(fragment_context);
+//        Log.i("details-product-name:",order.getOrderDetailsList().get(position).getProduct().getProductName());
+        //禁止掉商品item的滑动事件
+        LinearLayoutManager layoutManager = new LinearLayoutManager(fragment_context){
+//            @Override
+//            public boolean canScrollVertically() {
+//                return false;
+//            }
+            @Override
+            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
+                return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            }
+
+        };
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         holder.recyclerView.setLayoutManager(layoutManager);
+        adapter = new Adapter_OrderDetails(order.getOrderDetailsList());
+
         holder.recyclerView.setAdapter(adapter);
+//        holder.recyclerView.setVisibility(View.VISIBLE);
         holder.recyclerView.setEmptyView(mEmptyView);
+
+        //下面两句是防止刷新内部的recyclerView导致外部recyclerView也发生滑动
+        holder.recyclerView.setFocusableInTouchMode(false);
+        holder.recyclerView.requestFocus();
+
 
         holder.ordersWait_Amount.setText(order.getOrderPrice());
     }
@@ -113,10 +139,10 @@ public class Adapter_OrdersWait extends RecyclerView.Adapter<Adapter_OrdersWait.
     }
 
     /**
-     * 将item_orders_wait中的组件封装在一个类中（说法不太准确，大概这么个意思）
+     * 将item_orders_wait中的组件封装在一个类中
      */
     static class ViewHolder extends RecyclerView.ViewHolder {
-        private List<Order> ordersList;     //待处理的订单合集
+//        private List<Order> ordersList;     //待处理的订单合集
 
         //item_orders_wait.xml的组件
         View ordersWait_item_view;

@@ -1,12 +1,15 @@
 package com.example.foododeringapp.bean;
 
 public class Address {
-    private int addressId;
-    private int userId;     //用户编号
+    private int address_id;
+    private int UserId;     //用户编号
     private String receiveName;//收件人
     private String sex;        //性别
-    private int receivePhone;    //联系电话
+    private String receivePhone;    //联系电话
     private String addressName;    //收货地址
+//    private double Longitude;    //经度
+//    private double Latitude;    //纬度
+//   收货地址
 //    private double Longitude;    //经度
 //    private double Latitude;    //纬度
 
@@ -19,42 +22,58 @@ public class Address {
     }
 
     public int getUserId() {
-        return userId;
+        return UserId;
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
+        UserId = userId;
     }
 
     public String getReceiveName() {
-        return receiveName;
+        return ReceiveName;
     }
 
     public void setReceiveName(String receiveName) {
-        this.receiveName = receiveName;
+        ReceiveName = receiveName;
     }
 
     public String getSex() {
-        return sex;
+        return Sex;
     }
 
     public void setSex(String sex) {
-        this.sex = sex;
+        Sex = sex;
     }
 
-    public int getReceivePhone() {
-        return receivePhone;
+    public String getReceivePhone() {
+        return ReceivePhone;
     }
 
-    public void setReceivePhone(int receivePhone) {
-        this.receivePhone = receivePhone;
+    public void setReceivePhone(String receivePhone) {
+        ReceivePhone = receivePhone;
     }
 
     public String getAddressName() {
-        return addressName;
+        return AddressName;
     }
 
     public void setAddressName(String addressName) {
-        this.addressName = addressName;
+        AddressName = addressName;
+    }
+
+    public double getLongitude() {
+        return Longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        Longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return Latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        Latitude = latitude;
     }
 }

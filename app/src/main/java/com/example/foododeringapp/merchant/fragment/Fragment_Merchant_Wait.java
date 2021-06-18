@@ -2,12 +2,13 @@ package com.example.foododeringapp.merchant.fragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,11 +21,14 @@ import android.widget.Toast;
 
 import com.example.foododeringapp.R;
 import com.example.foododeringapp.bean.Order;
+import com.example.foododeringapp.bean.RestFulBean;
 import com.example.foododeringapp.merchant.adapter.Adapter_OrdersWait;
 import com.example.foododeringapp.service.RequestUtility;
 import com.example.foododeringapp.widget.EmptyRecyclerView;
 import com.example.foododeringapp.merchant.Activity_Merchant_Main;
 import com.flipboard.bottomsheet.BottomSheetLayout;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
@@ -40,8 +44,9 @@ public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayo
 
 
     private Integer business_id= 12345678;
-    private Adapter_OrdersWait adapter;
+    private Adapter_OrdersWait orderWaitAdapter;
 
+    String postFormChangeOrderState;
 
     //用于刷新
     private Handler handler = new Handler() {
@@ -53,6 +58,8 @@ public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayo
 
 
     private ProgressDialog pg;
+
+    private boolean changedState = false;
 
 
     @Nullable
@@ -71,6 +78,9 @@ public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayo
 
     }
 
+    /**
+     * 加载fragment_merchant_wait.xml的组件
+     */
     private void initView() {
         bottomSheetLayout =  getActivity().findViewById(R.id.bottom_sheet_layout);
         //刷新控件
@@ -81,9 +91,16 @@ public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayo
 
     }
 
+    /**
+     * 加载待处理订单信息
+     */
     private void showList() {
-        pg.setMessage("数据加载中...");
-        pg.show();
+        if(!changedState){
+            pg.setMessage("数据加载中...");
+            pg.show();
+        }
+
+        changedState = false;
         if (Activity_Merchant_Main.networkState == 0) {
             Toast.makeText(getActivity(), "网络连接失败，请检查网络连接设置！", Toast.LENGTH_SHORT).show();
             pg.dismiss();
@@ -112,7 +129,8 @@ public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayo
                 adapter = new Adapter_OrdersWait(ordersList, Fragment_Merchant_Wait.this, getActivity());
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                 recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setAdapter(adapter);
+                orderWaitAdapter = new Adapter_OrdersWait(ordersList, Fragment_Merchant_Wait.this, getActivity());
+                recyclerView.setAdapter(orderWaitAdapter);
                 recyclerView.setEmptyView(mEmptyView);
             }
         }
@@ -140,21 +158,99 @@ public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayo
      * @param id 订单编号
      * @return
      */
-    public void changeOrderStateById(int id, String state){
-        Order temp = ordersList.get(id);
-        if(temp != null){
-            temp.setOrderState(state);
+    public void changeOrderStateByOrderId(int order_id, String state){
+//        if(state == "ING"){
+//            pg.setMessage("接单中");
+//        }else{
+//            pg.setMessage("拒单中");
+//        }
+//        pg.show();
+        if (Activity_Merchant_Main.networkState == 0) {
+            Toast.makeText(getActivity(), "网络连接失败，请检查网络连接设置！", Toast.LENGTH_SHORT).show();
+            pg.dismiss();
+            return;
         }
 
-        update(true);
-
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    postFormChangeOrderState = MerchantPostUtility.updateOrderState(order_id, state);
+//                    Log.i("postForm:", postFormChangeOrderState);
+                    handler.post(runnableChangeOrderState);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
-    public void update(boolean refreshOrderList) {
-        //更新adapter列表
-        if (adapter != null && refreshOrderList) {
-            adapter.notifyDataSetChanged();
+    private Runnable runnableChangeOrderState = new Runnable() {
+        @Override
+        public void run() {
+            pg.dismiss();
+//            if(postFormChangeOrderState == null || postFormChangeOrderState.length()>100){
+//            if(postFormChangeOrderState == null){
+//                Util.showToast(getActivity(), "接单失败，请重试！");
+//                return;
+//            }
+            //接单成功，则弹窗显示成功
+            Gson gson = new Gson();
+            RestFulBean<String> restFulBean = gson.fromJson(postFormChangeOrderState,  new TypeToken<RestFulBean<String>>() {
+            }.getType());
+
+            if(restFulBean.getStatus() == -1){
+                Util.showToast(getActivity(), "操作失败");
+                return;
+            }else{
+                Util.showToast(getActivity(), "操作成功");
+                changedState = true;
+                showList();
+            }
         }
+    };
+
+
+//    public void update(boolean refreshOrderList) {
+//        //更新adapter列表
+//        if (orderWaitAdapter != null && refreshOrderList) {
+//            orderWaitAdapter.notifyDataSetChanged();
+//        }
+//    }
+
+
+
+    /**
+     * SwipeRefreshLayout.OnRefreshListener 对应的下拉刷新事件
+     */
+    @Override
+    public void onRefresh() {
+        showList();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    //刷新控件停止两秒后消失
+                    Thread.sleep(1000);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+                    });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
+    /**
+     * 监听该界面中的组件
+     * @param v
+     */
+    @Override
+    public void onClick(View v) {
+
+    }
 }

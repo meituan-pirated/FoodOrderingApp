@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id = "@+id/relative_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_notice_order_finished"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp">
+
+        <TextView
+            android:id="@+id/arrive_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="20dp"
+            android:text="22:06"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="准时送达"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/stroke"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/divider" />
+    <!--    订单信息-->
+    <LinearLayout
+        android:id="@+id/logo"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_gray_bg"
+        android:layout_marginHorizontal="20dp">
+
+        <!--        <TextView-->
+
+        <!--            android:text="取"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:textColor="@color/teal_200"-->
+        <!--            android:paddingBottom="10dp"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content" />-->
+        <!--    订单店铺及订单号-->
+        <TextView
+            android:id="@+id/merchant_name"
+            android:text="店铺名称"
+            android:textSize="23sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/order_id"
+            android:text="#订单号"
+            android:textSize="23sp"
+            android:textColor="@color/black"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+    <!--    评分-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/light_gray_bg"
+        android:layout_marginHorizontal="20dp">
+
+        <TextView
+            android:text="评分："
+            android:textSize="23sp"
+            android:paddingVertical="10dp"
+            android:paddingStart="15dp"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content" />
+        <RatingBar
+            android:id="@+id/score_ratingBar"
+            android:visibility="visible"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="5"
+            android:stepSize="1" />
+        <TextView
+            android:id="@+id/no_comment"
+            android:visibility="invisible"
+            android:text="(客户未打分)"
+            android:textSize="20sp"
+            android:paddingVertical="10dp"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/stroke"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/divider" />
+
+
+</LinearLayout>

@@ -72,7 +72,7 @@ public class Activity_Merchant_Main extends BaseActivity {
         toolbarText = findViewById(R.id.toolbar_text);
         toolbarText.setText("首页");
 
-        setSupportActionBar(toolbar);//使用toolbar,外观功能和ActionBar一致
+//        setSupportActionBar(toolbar);//使用toolbar,外观功能和ActionBar一致
 
 //        final ActionBar actionBar = getSupportActionBar();//得到ActionBar实例
 //        if (actionBar != null) {

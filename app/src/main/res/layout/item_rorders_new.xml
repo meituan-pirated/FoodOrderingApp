@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id = "@+id/relative_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_notice"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
+
+
+    <!--    订单店铺及订单号-->
+    <TextView
+        android:id="@+id/merchant_name"
+        android:text="店铺名称"
+        android:textSize="30sp"
+        android:layout_alignParentLeft = "true"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/order_id"
+        android:layout_toRightOf= "@id/merchant_name"
+        android:layout_alignBaseline="@id/merchant_name"
+        android:text="#订单号"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <!--    订单地址信息-->
+    <LinearLayout
+        android:id="@+id/logo"
+        android:layout_below="@id/merchant_name"
+        android:orientation="vertical"
+        android:paddingLeft="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <!--        <TextView-->
+
+        <!--            android:text="取"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:textColor="@color/teal_200"-->
+        <!--            android:paddingBottom="10dp"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content" />-->
+        <Button
+            android:padding="5dp"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:background="@drawable/hint_superscript_green"
+            android:gravity="center"
+            android:text="取"
+            android:layout_marginBottom="5dp"
+            android:textSize="20sp"
+            android:textColor="@color/teal_200"
+            />
+
+        <!--        <TextView-->
+
+        <!--            android:text="送"-->
+        <!--            android:textColor="@color/red"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content" />-->
+
+        <Button
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:background="@drawable/hint_superscript_red"
+            android:gravity="center"
+            android:text="送"
+            android:textSize="20sp"
+            android:textColor="@color/red"
+            android:id="@+id/song"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_toRightOf= "@id/logo"
+        android:layout_alignTop = "@id/logo"
+        android:orientation="vertical"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/merchant_add"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:text="商家地址xxxxxxxxxxxxxxxxx"
+            android:layout_marginBottom="5dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/buyer_add"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:text="客人地址xxxxxxxxxxxxxxxxxxxx"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <!--    更改状态的按钮-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/logo"
+        android:layout_height="125dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/income"
+            android:text="预计收入：15元"
+            android:textSize="23sp"
+            android:textColor="@color/black"
+            android:paddingVertical="10dp"
+            android:paddingStart="25dp"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_accept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/whatever"
+            android:text="接单"
+            android:textSize="22sp"
+            android:textColor="@color/light_gray_bg"/>
+        <!--    已取餐、已送达  -->
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

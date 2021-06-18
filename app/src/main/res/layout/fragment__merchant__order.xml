@@ -6,5 +6,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".merchant.fragment.Fragment_Merchant_Order">
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/orderPage_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@color/white_bg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabRippleColor="#F5F5F5"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabMode="scrollable"
+                    app:tabTextColor="#424242"
+                    app:tabSelectedTextColor="@color/red"
+                    app:tabGravity="fill"/>
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/orderPages"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
 
 </LinearLayout>

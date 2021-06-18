@@ -1,49 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/ordersDetails_item_view"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+<!--<LinearLayout-->
+<!--    android:id="@+id/ordersDetails_item_view"-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="horizontal">-->
 
-<!--    商品名字-->
+<!--&lt;!&ndash;    商品名字&ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/orderDetails_name"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="商品名字"/>-->
+
+<!--&lt;!&ndash;    数量&ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/orderDetails_num"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="数量 "-->
+<!--        android:layout_marginLeft="20dp"/>-->
+
+<!--&lt;!&ndash;    销售价格&ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/orderDetails_salePrice"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="30.00"-->
+<!--        android:layout_marginLeft="20dp"/>-->
+
+<!--&lt;!&ndash;    配送价格&ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/orderDetails_deliveryPrice"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="1.00"-->
+<!--        android:layout_marginLeft="20dp"/>-->
+
+<!--&lt;!&ndash;    总计&ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/orderDetails_sum"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="31.00"-->
+<!--        android:layout_marginLeft="20dp"/>-->
+
+
+<!--</LinearLayout>-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ordersDetails_item_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    android:layout_marginTop="1dp"
+    android:background="#fff"
+    android:orientation="horizontal"
+    android:paddingBottom="6dp"
+    android:layout_marginHorizontal="10dp"
+    android:paddingHorizontal="3dp"
+    android:paddingTop="6dp">
+
     <TextView
         android:id="@+id/orderDetails_name"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="商品名字"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:maxLines="1"
+        android:text="商品名"
+        android:textSize="16sp" />
 
-<!--    数量-->
     <TextView
         android:id="@+id/orderDetails_num"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="数量 "
-        android:layout_marginLeft="20dp"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:minWidth="20dp"
+        android:text="×0"
+        android:textSize="16sp" />
 
-<!--    销售价格-->
     <TextView
         android:id="@+id/orderDetails_salePrice"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="30.00"
-        android:layout_marginLeft="20dp"/>
-
-<!--    配送价格-->
-    <TextView
-        android:id="@+id/orderDetails_deliveryPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="1.00"
-        android:layout_marginLeft="20dp"/>
+        android:textSize="16sp"/>
 
-<!--    总计-->
+
     <TextView
         android:id="@+id/orderDetails_sum"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="31.00"
-        android:layout_marginLeft="20dp"/>
-
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:text="￥ 100"
+        android:textColor="@color/red"
+        android:textSize="16sp" />
 
 </LinearLayout>
