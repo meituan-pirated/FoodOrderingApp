@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class OrderDetailsForR {
     private Order order;
-    /*包括了
+    /*包括了我需要的
     private int order_id;//订单编号
     private int user_id; //用户编号
     private int merchant_id; //商家编号
@@ -20,11 +20,20 @@ public class OrderDetailsForR {
            *//*
     private String OrderNote; //商品备注
     private String OrderState;//订单状态：待处理，进行中，已完成，已取消
-    private String OrderTime;*/
+    private String OrderTime;
+    很重要
+    private List<OrderDetails> orderDetailsList;
+        private int order_details_id;
+        private Integer amount;
+        private Products product;
+            private Integer product_id;
+            private String productName;
+            private Integer salePrice;
 
-    private String merchant_name;
-    private String merchant_add;
-    private ArrayList<FoodRecordForR> foodList;
+
+    */
+    private BusinessForR businessInfo;
+
 
     public Order getOrder() {
         return order;
@@ -34,27 +43,11 @@ public class OrderDetailsForR {
         this.order = order;
     }
 
-    public String getMerchant_name() {
-        return merchant_name;
+    public BusinessForR getBusinessInfo() {
+        return businessInfo;
     }
 
-    public void setMerchant_name(String merchant_name) {
-        this.merchant_name = merchant_name;
-    }
-
-    public String getMerchant_add() {
-        return merchant_add;
-    }
-
-    public void setMerchant_add(String merchant_add) {
-        this.merchant_add = merchant_add;
-    }
-
-    public ArrayList<FoodRecordForR> getFoodList() {
-        return foodList;
-    }
-
-    public void setFoodList(ArrayList<FoodRecordForR> foodList) {
-        this.foodList = foodList;
+    public void setBusinessInfo(BusinessForR businessInfo) {
+        this.businessInfo = businessInfo;
     }
 }

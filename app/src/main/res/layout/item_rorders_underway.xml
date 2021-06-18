@@ -10,12 +10,13 @@
 
 <!--    订单店铺及订单号-->
     <LinearLayout
-        android:id="@+id/merchant_name"
+        android:id="@+id/merchant_part"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
             android:text="店铺名称"
+            android:id="@+id/merchant_name"
             android:textSize="30sp"
             android:layout_alignParentLeft = "true"
             android:layout_alignParentTop="true"
@@ -23,25 +24,24 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
-            android:layout_weight="1.5"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/order_id"
-            android:layout_weight="1.5"
+            android:layout_weight="2"
             android:text="#订单号"
             android:textSize="25sp"
             android:textColor="@color/black"
             android:layout_marginTop="20dp"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/open_order"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_weight="0.75"
+            android:layout_weight="1"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="@dimen/spacing_minor"
             android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
@@ -53,7 +53,7 @@
 <!--    订单地址信息-->
     <LinearLayout
         android:id="@+id/logo"
-        android:layout_below="@id/merchant_name"
+        android:layout_below="@id/merchant_part"
         android:orientation="vertical"
         android:paddingLeft="18dp"
         android:layout_width="wrap_content"

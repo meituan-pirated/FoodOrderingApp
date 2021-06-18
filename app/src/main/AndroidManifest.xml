@@ -9,6 +9,7 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
@@ -23,6 +24,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -37,13 +41,15 @@
         <activity android:name=".merchant.Activity_Merchant_ProductInfoList" />
         <activity android:name=".user.Activity_User_Main" />
         <activity android:name=".rider.Activity_Rider_Main" />
-        <activity android:name=".Activity_Login" />
-        <activity android:name=".merchant.Activity_Merchant_Main">
-            <intent-filter>
+        <activity android:name=".rider.Activity_Edit_Account" />
+        <activity android:name=".rider.Activity_Order_details" />
+        <activity android:name=".Activity_Login" >
+            <intent-filter> <!-- 设置启动的第一个activity -->
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".merchant.Activity_Merchant_Main">
         </activity>
     </application>
 

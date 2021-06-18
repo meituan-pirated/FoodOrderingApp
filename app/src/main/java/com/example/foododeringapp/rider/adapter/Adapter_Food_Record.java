@@ -1,31 +1,36 @@
 package com.example.foododeringapp.rider.adapter;
 
 import android.os.Build;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foododeringapp.bean.FoodRecordForR;
+import com.example.foododeringapp.bean.OrderDetails;
 import com.example.foododeringapp.rider.Activity_Order_details;
 import com.example.foododeringapp.R;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xch on 2017/3/9.
  */
 
 public class Adapter_Food_Record extends RecyclerView.Adapter<Adapter_Food_Record.ViewHolder> {
-    private ArrayList<FoodRecordForR> dataList;
+    private ArrayList<OrderDetails> dataList;
     private NumberFormat nf;
     private LayoutInflater mInflater;
 
 
-    public Adapter_Food_Record(Activity_Order_details activity, ArrayList<FoodRecordForR> dataList) {
+    public Adapter_Food_Record(Activity_Order_details activity, ArrayList<OrderDetails> dataList) {
         this.dataList = dataList;
         nf = NumberFormat.getCurrencyInstance();
         nf.setMaximumFractionDigits(2);
@@ -38,23 +43,26 @@ public class Adapter_Food_Record extends RecyclerView.Adapter<Adapter_Food_Recor
         return new ViewHolder(view);
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        FoodRecordForR item = dataList.get(position);
-        holder.bindData(item);
+        OrderDetails item = dataList.get(position);
+        Log.i("点的菜",item.getProduct().getProductName());
+        holder.tvName.setText(item.getProduct().getProductName());
+        holder.tvCost.setText(nf.format(item.getAmount() * item.getProduct().getSalePrice()));
+        holder.tvCount.setText("×"+String.valueOf(item.getAmount()));
     }
 
     @Override
     public int getItemCount() {
-        if (dataList == null) {
-            return 0;
-        }
+//        if (dataList == null) {
+//            return 0;
+//        }
         return dataList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private FoodRecordForR item;
+        private OrderDetails item;
         private TextView tvCost, tvCount,tvName;
 
         public ViewHolder(View itemView) {
@@ -64,12 +72,5 @@ public class Adapter_Food_Record extends RecyclerView.Adapter<Adapter_Food_Recor
             tvCount = (TextView) itemView.findViewById(R.id.count);
         }
 
-//        @RequiresApi(api = Build.VERSION_CODES.N)
-        public void bindData(FoodRecordForR item) {
-            this.item = item;
-            tvName.setText(item.getName());
-            tvCost.setText(nf.format(item.count * item.getPrice()));
-            tvCount.setText("×"+String.valueOf(item.count));
-        }
     }
 }

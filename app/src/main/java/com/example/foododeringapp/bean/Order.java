@@ -1,5 +1,6 @@
 package com.example.foododeringapp.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -8,22 +9,25 @@ public class Order {
     private int business_id; //商家编号
     private int rider_id; //骑手编号
 
-    private String orderNote; //商品备注
-    private String orderState;//订单状态：待处理，进行中，已完成，已取消
+
+    private String OrderNote; //商品备注
+    private String OrderState;//订单状态：待处理，进行中，已完成，已取消
 
     private Address address; //地址信息
 
-    private List<OrderDetails> orderDetailsList; //订单详细信息
+    private ArrayList<OrderDetails> orderDetailsList; //订单详细信息
 
-    private String orderPrice;//实付金额
-    private String orderTime;
-//    private String CommentState;//评论状态
+    private String OrderPrice;//实付金额
+    private String OrderTime;
+    private String arriveTime;
+    //private String CommentState;//评论状态
 
     private Integer riderScore;
     private Integer businessScore;
 
 //    private double Longitude;    //经度
 //    private double Latitude;    //纬度
+
 
     public int getOrder_id() {
         return order_id;
@@ -58,19 +62,19 @@ public class Order {
     }
 
     public String getOrderNote() {
-        return orderNote;
+        return OrderNote;
     }
 
     public void setOrderNote(String orderNote) {
-        this.orderNote = orderNote;
+        OrderNote = orderNote;
     }
 
     public String getOrderState() {
-        return orderState;
+        return OrderState;
     }
 
     public void setOrderState(String orderState) {
-        this.orderState = orderState;
+        OrderState = orderState;
     }
 
     public Address getAddress() {
@@ -81,28 +85,28 @@ public class Order {
         this.address = address;
     }
 
-    public List<OrderDetails> getOrderDetailsList() {
+    public ArrayList<OrderDetails> getOrderDetailsList() {
         return orderDetailsList;
     }
 
-    public void setOrderDetailsList(List<OrderDetails> orderDetailsList) {
+    public void setOrderDetailsList(ArrayList<OrderDetails> orderDetailsList) {
         this.orderDetailsList = orderDetailsList;
     }
 
     public String getOrderPrice() {
-        return orderPrice;
+        return OrderPrice;
     }
 
     public void setOrderPrice(String orderPrice) {
-        this.orderPrice = orderPrice;
+        OrderPrice = orderPrice;
     }
 
     public String getOrderTime() {
-        return orderTime;
+        return OrderTime;
     }
 
     public void setOrderTime(String orderTime) {
-        this.orderTime = orderTime;
+        OrderTime = orderTime;
     }
 
     public Integer getRiderScore() {
@@ -119,5 +123,13 @@ public class Order {
 
     public void setBusinessScore(Integer businessScore) {
         this.businessScore = businessScore;
+    }
+
+    public String getArriveTime() {
+        return arriveTime;
+    }
+
+    public void setArriveTime(String arriveTime) {
+        this.arriveTime = arriveTime;
     }
 }

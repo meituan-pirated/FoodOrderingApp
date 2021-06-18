@@ -19,11 +19,13 @@ import com.example.foododeringapp.control.BaseActivity;
 import com.example.foododeringapp.merchant.service.MerchantRequestUtility;
 import com.example.foododeringapp.util.Util;
 
-import com.lzy.imagepicker.ImagePicker;
+/*import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.ui.ImagePreviewDelActivity;
-import com.lzy.imagepicker.view.CropImageView;
+import com.lzy.imagepicker.view.CropImageView;*/
+
+
 //import com.lzy.imagepickerdemo.R;
 //import com.lzy.imagepickerdemo.SelectDialog;
 //import com.lzy.imagepickerdemo.imageloader.GlideImageLoader;

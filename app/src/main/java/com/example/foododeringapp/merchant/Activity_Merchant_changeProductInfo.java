@@ -133,8 +133,6 @@ public class Activity_Merchant_changeProductInfo extends BaseActivity{
                     Log.i("infoclick", "infoclick");
                     fragment.show(fm, "fragment_bottom_dialog");
                 }
-
-
             }
         });
 

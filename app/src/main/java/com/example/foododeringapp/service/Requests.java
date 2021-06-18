@@ -62,8 +62,8 @@ public class Requests implements RequestManager {
      */
     @Override
     public String postForm(String url, String... params) throws Exception {
-        Log.i("url",url);
         RequestTask requestTask = new RequestTask();
+        Log.i("url",url);
         requestTask.executeRequest(url, RequestTask.REQUEST_MODE_POST, params);
         //返回state_code
         String result = requestTask.get();

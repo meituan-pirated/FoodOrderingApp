@@ -1,32 +1,62 @@
 package com.example.foododeringapp.bean;
 
 public class OrderForR {
-    private Order oeder;
-    //里面有order_id、OrderState、address（包括String ReceivePhone、String AddressName）
-    private String merchant_name;
-    private String merchant_add;
+    private Integer order_id;
+    private String order_state;
+    private String arrive_time;
+    private Integer rider_score;
 
-    public Order getOeder() {
-        return oeder;
+    private Address address;
+
+    private BusinessForR businessInfo;
+
+
+
+    public Integer getOrder_id() {
+        return order_id;
     }
 
-    public void setOeder(Order oeder) {
-        this.oeder = oeder;
+    public void setOrder_id(Integer order_id) {
+        this.order_id = order_id;
     }
 
-    public String getMerchant_name() {
-        return merchant_name;
+    public String getOrder_state() {
+        return order_state;
     }
 
-    public void setMerchant_name(String merchant_name) {
-        this.merchant_name = merchant_name;
+    public void setOrder_state(String order_state) {
+        this.order_state = order_state;
     }
 
-    public String getMerchant_add() {
-        return merchant_add;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setMerchant_add(String merchant_add) {
-        this.merchant_add = merchant_add;
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public BusinessForR getBusinessInfo() {
+        return businessInfo;
+    }
+
+    public void setBusinessInfo(BusinessForR businessInfo) {
+        this.businessInfo = businessInfo;
+    }
+
+    public String getArriveTime() {
+        return arrive_time;
+    }
+
+    public void setArriveTime(String arriveTime) {
+        this.arrive_time = arriveTime;
+    }
+
+    public Integer getRiderScore() {
+        return rider_score;
+    }
+
+    public void setRiderScore(Integer riderScore) {
+        this.rider_score = riderScore;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.foododeringapp.control;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,4 +21,6 @@ public class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         ActivityCollector.removeActivity(this);//将Activity从集合移除
     }
+
+
 }

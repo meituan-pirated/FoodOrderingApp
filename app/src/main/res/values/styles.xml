@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--评分 星星-->
+
+    <style name="RatingBarIndicatorFalse" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/rating_bar</item>
+        <item name="android:maxHeight">50dp</item>
+        <item name="android:isIndicator">false</item>
+        <item name="android:minHeight">50dp</item>
+    </style>
 
 <!--    上传图片弹出框-->
     <style name="main_menu_animstyle">
@@ -11,6 +19,42 @@
         <item name="android:windowBackground">@drawable/photo_choose_bg</item>
     </style>
 
+    <!--update_address-->
+    <style name="Widget.LazyOrder.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textColorHint">@color/secondary_text</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="Widget.LazyOrder.Button" parent="Widget.AppCompat.Button">
+        <item name="android:paddingLeft">@dimen/spacing_micro</item>
+        <item name="android:paddingRight">@dimen/spacing_micro</item>
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/selector_blue_corners_button</item>
+    </style>
+
+    <!--登录输入框-->
+    <style name="login_Input_Font">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textColor">#ff333333</item>
+    </style>
+
+    <!-- 选择框自定义主题 -->
+    <style name="select_style">
+        <item name="android:layout_width">60dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">4dip</item>
+        <item name="android:layout_marginRight">4dip</item>
+        <item name="android:paddingTop">4dip</item>
+        <item name="android:paddingBottom">4dip</item>
+<!--        <item name="android:background">@drawable/select_selector</item>-->
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/purple_200</item>
+    </style>
 
     <style name="BottomDialog">
         <item name="android:layout_width">match_parent</item>

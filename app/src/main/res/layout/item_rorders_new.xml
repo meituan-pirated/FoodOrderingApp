@@ -53,8 +53,8 @@
         <!--            android:layout_height="wrap_content" />-->
         <Button
             android:padding="5dp"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
             android:background="@drawable/hint_superscript_green"
             android:gravity="center"
             android:text="取"
@@ -72,8 +72,8 @@
         <!--            android:layout_height="wrap_content" />-->
 
         <Button
-            android:layout_width="50dip"
-            android:layout_height="50dip"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
             android:background="@drawable/hint_superscript_red"
             android:gravity="center"
             android:text="送"
@@ -95,7 +95,7 @@
         <TextView
             android:id="@+id/merchant_add"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:text="商家地址xxxxxxxxxxxxxxxxx"
             android:layout_marginBottom="5dp"
@@ -104,7 +104,7 @@
         <TextView
             android:id="@+id/buyer_add"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:text="客人地址xxxxxxxxxxxxxxxxxxxx"
             android:textSize="20sp" />
@@ -118,7 +118,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/outcoming"
+            android:id="@+id/income"
             android:text="预计收入：15元"
             android:textSize="23sp"
             android:textColor="@color/black"
