@@ -1,77 +1,58 @@
 package com.example.foododeringapp.bean;
 
 public class Merchant {
-    private String Id;
-    private String Name;
-    private String Email;
-    private String PhoneNumber;
-    private String Address;
-    private String Nickname;
-    private String Sex;
-    private String Avatar;//头像
+    private Integer id;
+    private String name;
+    private String description;
+    private String phoneNumber;
+    private String address;
+    private String businessImage;//头像
 
-    public String getId() {
-        return Id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId(String id) {
-        Id = id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getDescription() {
+        return description;
     }
 
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-    public String getAddress() {
-        return Address;
-    }
-
-    public void setAddress(String address) {
-        Address = address;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getNickname() {
-        return Nickname;
+    public String getAddress() {
+        return address;
     }
 
-    public void setNickname(String nickname) {
-        Nickname = nickname;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getSex() {
-        return Sex;
+    public String getBusinessImage() {
+        return businessImage;
     }
 
-    public void setSex(String sex) {
-        Sex = sex;
+    public void setBusinessImage(String businessImage) {
+        this.businessImage = businessImage;
     }
-
-    public String getAvatar() {
-        return Avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        Avatar = avatar;
-    }
-
 }

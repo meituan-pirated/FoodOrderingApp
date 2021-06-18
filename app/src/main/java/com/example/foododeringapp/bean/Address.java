@@ -2,13 +2,13 @@ package com.example.foododeringapp.bean;
 
 public class Address {
     private int addressId;
-    private int UserId;     //用户编号
-    private String ReceiveName;//收件人
-    private String Sex;        //性别
-    private String ReceivePhone;    //联系电话
-    private String AddressName;    //收货地址
-    private double Longitude;    //经度
-    private double Latitude;    //纬度
+    private int userId;     //用户编号
+    private String receiveName;//收件人
+    private String sex;        //性别
+    private int receivePhone;    //联系电话
+    private String addressName;    //收货地址
+//    private double Longitude;    //经度
+//    private double Latitude;    //纬度
 
     public int getAddressId() {
         return addressId;
@@ -19,58 +19,42 @@ public class Address {
     }
 
     public int getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(int userId) {
-        UserId = userId;
+        this.userId = userId;
     }
 
     public String getReceiveName() {
-        return ReceiveName;
+        return receiveName;
     }
 
     public void setReceiveName(String receiveName) {
-        ReceiveName = receiveName;
+        this.receiveName = receiveName;
     }
 
     public String getSex() {
-        return Sex;
+        return sex;
     }
 
     public void setSex(String sex) {
-        Sex = sex;
+        this.sex = sex;
     }
 
-    public String getReceivePhone() {
-        return ReceivePhone;
+    public int getReceivePhone() {
+        return receivePhone;
     }
 
-    public void setReceivePhone(String receivePhone) {
-        ReceivePhone = receivePhone;
+    public void setReceivePhone(int receivePhone) {
+        this.receivePhone = receivePhone;
     }
 
     public String getAddressName() {
-        return AddressName;
+        return addressName;
     }
 
     public void setAddressName(String addressName) {
-        AddressName = addressName;
-    }
-
-    public double getLongitude() {
-        return Longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        Longitude = longitude;
-    }
-
-    public double getLatitude() {
-        return Latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        Latitude = latitude;
+        this.addressName = addressName;
     }
 }

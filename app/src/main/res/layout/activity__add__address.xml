@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".user.Activity_Add_Address">
+
+<!--    uaName uaPhone uaAddress radioGroup_sex:ua_male ua_female btnChangeInfo-->
+    <!--    收件人 性别 联系电话 地址-->
+    <include layout="@layout/title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="姓 名:"
+            android:gravity="center"
+            android:textColor="@color/primary_text"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/uaName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cell_normal"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="古力是哇"
+            android:textSize="28dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="电 话:"
+            android:gravity="center"
+            android:textColor="@color/primary_text"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/uaPhone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cell_normal"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="15871872000"
+            android:textSize="28dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="地 址:"
+            android:gravity="center"
+            android:textColor="@color/primary_text"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/uaAddress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cell_normal"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="临湖四栋"
+            android:textSize="28dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="性 别:"
+            android:gravity="center"
+            android:textSize="26sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ua_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:paddingLeft="@dimen/spacing_micro"
+                android:text="先生"
+                android:textSize="25sp" />
+
+            <RadioButton
+                android:id="@+id/ua_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_major"
+                android:layout_marginLeft="@dimen/spacing_major"
+                android:paddingLeft="@dimen/spacing_micro"
+                android:text="女生"
+                android:textSize="25sp" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnChangeInfo"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="22dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textSize="23sp"
+        android:layout_gravity="center"
+        android:text="    增 加 收 货 地 址   " />
+</LinearLayout>

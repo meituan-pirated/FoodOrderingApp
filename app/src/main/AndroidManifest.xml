@@ -3,8 +3,8 @@
     package="com.example.foododeringapp">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name="org.litepal.LitePalApplication"
@@ -14,20 +14,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOderingApp.NoActionBar">
-        <activity android:name=".user.Activity_User_Main" />
-        <activity android:name=".rider.Activity_Rider_Main" />
-        <activity android:name=".Activity_Login" />
-<!--        <activity-->
-<!--            android:name=".ui.login.Activity_Login"-->
-<!--            android:label="@string/title_activity__login" />-->
-
-        <activity android:name=".merchant.Activity_Merchant_Main">
+        <activity android:name=".user.Activity_User_Choose_Address"></activity>
+        <activity android:name=".user.Activity_User_Remark" />
+        <activity android:name=".user.Activity_User_Payment" />
+        <activity android:name=".user.Activity_User_Foodlist" />
+        <activity android:name=".user.Activity_Location" />
+        <activity android:name=".user.Activity_User_Balance" />
+        <activity android:name=".user.Activity_Add_Address" />
+        <activity android:name=".user.Activity_Change_Address" />
+        <activity android:name=".user.Activity_Address_Manage" />
+        <activity android:name=".user.Activity_change_userName" />
+        <activity android:name=".user.Activity_User_Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".rider.Activity_Rider_Main" />
+        <activity android:name=".Activity_Login" /> <!-- <activity -->
+        <!-- android:name=".ui.login.Activity_Login" -->
+        <!-- android:label="@string/title_activity__login" /> -->
+        <activity android:name=".merchant.Activity_Merchant_Main" />
     </application>
 
 </manifest>

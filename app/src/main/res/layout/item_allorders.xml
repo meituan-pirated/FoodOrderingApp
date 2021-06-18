@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+<!--    order_id order_note order_state user_order_list(LinearLayout)
+order_address order表中没有，需要向address表根据address_id-->
+<!--    待处理订单编号-->
+    <LinearLayout
+        android:id="@+id/user_order_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+<!--        待处理订单编号，到100后从1开始重新计数-->
+        <TextView
+            android:id="@+id/order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"/>
+<!--        订单备注-->
+        <TextView
+            android:id="@+id/order_note"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="订单备注"
+            android:paddingLeft="10dp"/>
+
+<!--        订单状况-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/order_state"
+            android:text="已送达"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+<!--    分割线-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dip"
+        android:background="@drawable/divider"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"/>
+
+<!--    订单人信息-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--       order_address order表中没有，需要向address表根据address_id 请求送达地址-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="送达地址："/>
+
+            <TextView
+                android:id="@+id/order_address"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:text="中南财经政法大学"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--    分割线-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dip"
+        android:background="@drawable/divider"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"/>
+
+    <!--    订单金额-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="支付金额："/>
+
+<!--        总金额-->
+        <TextView
+            android:id="@+id/order_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="100"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="元"/>
+
+    </LinearLayout>
+    <!--    分割线-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dip"
+        android:background="@drawable/divider"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"/>
+
+
+</LinearLayout>

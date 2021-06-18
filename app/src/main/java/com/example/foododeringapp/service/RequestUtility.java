@@ -1,5 +1,6 @@
 package com.example.foododeringapp.service;
 
+import com.example.foododeringapp.bean.Merchant;
 import com.example.foododeringapp.bean.Order;
 import com.example.foododeringapp.bean.RestFulBean;
 import com.example.foododeringapp.util.Util;
@@ -14,9 +15,11 @@ import java.util.List;
  *
  */
 public class RequestUtility {
+
     private static RequestManager requestManager = new Requests();
 
     private static List<Order> ordersList = new ArrayList<>();
+
 
     private static String requestUrl = Util.Url;
 
@@ -37,6 +40,7 @@ public class RequestUtility {
         }
         return ordersList;
     }
+
 
 //    /**
 //     * 获取待处理订单

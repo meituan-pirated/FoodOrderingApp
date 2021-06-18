@@ -150,11 +150,11 @@ public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayo
 
     }
 
-
     public void update(boolean refreshOrderList) {
         //更新adapter列表
         if (adapter != null && refreshOrderList) {
             adapter.notifyDataSetChanged();
         }
     }
+
 }
