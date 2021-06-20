@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,13 +30,15 @@ import com.example.foododeringapp.rider.Activity_Questions;
 import com.example.foododeringapp.rider.service.RiderRequestUtility;
 import com.example.foododeringapp.rider.service.RiderRequestUtility;
 
+import java.io.File;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Fragment_Rider_My extends Fragment {
     private Toolbar toolbar;
     private String rider_id;
 
-    private String userName, userImg;
+    private String userName, riderAdvatar;
 
     private LinearLayout my_account, question;
 
@@ -95,13 +98,9 @@ public class Fragment_Rider_My extends Fragment {
         user_name.setText(rider.getName());
         user_nickname.setText(rider.getNickName());
         user_phone.setText(rider.getPhoneNumber());
-
-        Resources resources = getActivity().getResources();
-        int indentify = getResources().getIdentifier(rider.getAdvatar(), "mipmap", "com.example.foododeringapp");
-        if(indentify!=0){
-            //如果在drawable里找到了图片就换到头像上
-            user_img.setImageResource(indentify);
-        }
+        riderAdvatar = rider.getAdvatar();//只有图片名没有后缀名
+        int image_id = getResources().getIdentifier(riderAdvatar,"mipmap",getActivity().getPackageName());
+        user_img.setImageResource(image_id);
 
 
 

@@ -136,11 +136,6 @@ public class Activity_Login extends BaseActivity implements View.OnClickListener
         if (pwd != null && !pwd.isEmpty()) {
             etPwd.setText(pwd);
         }
-        if(type!=0) {
-            userType = type;
-        }
-
-
     }
 
     //使用数组形式操作
@@ -148,7 +143,7 @@ public class Activity_Login extends BaseActivity implements View.OnClickListener
 
         public void onItemSelected(AdapterView<?> parent, View arg1, int position,
                                    long id) {
-            userType = position+1; //要注意到底是不是从0开始，是的！
+            userType = position; //要注意到底是不是从0开始，是的！
         }
 
         public void onNothingSelected(AdapterView<?> arg0) {
@@ -312,11 +307,11 @@ public class Activity_Login extends BaseActivity implements View.OnClickListener
                     Intent intent = new Intent(Activity_Login.this, Activity_Merchant_Main.class);
                     intent.putExtra("merchant_id",login_id);
                     startActivity(intent);
-            }else if(login_id>211000000&&login_id<2110000000){
+            }else if(login_id>211000000&&login_id<2000000000){
                     Intent intent = new Intent(Activity_Login.this, Activity_Rider_Main.class);
                     intent.putExtra("rider_id",login_id);
                     startActivity(intent);
-                }else if(login_id>2110000000){
+                }else if(login_id>2000000000){
                     Intent intent = new Intent(Activity_Login.this, Activity_User_Main.class);
                     intent.putExtra("user_id",login_id);
                     startActivity(intent);

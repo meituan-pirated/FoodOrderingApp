@@ -40,6 +40,7 @@
         <activity android:name=".merchant.Activity_Merchant_StoreInfo" />
         <activity android:name=".merchant.Activity_Merchant_ProductInfoList" />
         <activity android:name=".user.Activity_User_Main" />
+        <activity android:name=".user.Activity_Order_Ing_Details" />
         <activity android:name=".rider.Activity_Rider_Main" />
         <activity android:name=".rider.Activity_Edit_Account" />
         <activity android:name=".rider.Activity_Order_details" />

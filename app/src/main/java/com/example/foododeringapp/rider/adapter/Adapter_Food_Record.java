@@ -15,6 +15,7 @@ import com.example.foododeringapp.bean.FoodRecordForR;
 import com.example.foododeringapp.bean.OrderDetails;
 import com.example.foododeringapp.rider.Activity_Order_details;
 import com.example.foododeringapp.R;
+import com.example.foododeringapp.user.Activity_Order_Ing_Details;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -31,6 +32,13 @@ public class Adapter_Food_Record extends RecyclerView.Adapter<Adapter_Food_Recor
 
 
     public Adapter_Food_Record(Activity_Order_details activity, ArrayList<OrderDetails> dataList) {
+        this.dataList = dataList;
+        nf = NumberFormat.getCurrencyInstance();
+        nf.setMaximumFractionDigits(2);
+        mInflater = LayoutInflater.from(activity);
+    }
+
+    public Adapter_Food_Record(Activity_Order_Ing_Details activity, ArrayList<OrderDetails> dataList) {
         this.dataList = dataList;
         nf = NumberFormat.getCurrencyInstance();
         nf.setMaximumFractionDigits(2);

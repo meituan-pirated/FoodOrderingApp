@@ -36,15 +36,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ashokvarma.bottomnavigation.utils.Utils;
 import com.example.foododeringapp.R;
+import com.example.foododeringapp.bean.RestFulBean;
 import com.example.foododeringapp.bean.Rider;
 import com.example.foododeringapp.control.BaseActivity;
+import com.example.foododeringapp.rider.service.RiderPostUtility;
 import com.example.foododeringapp.rider.service.RiderRequestUtility;
 import com.example.foododeringapp.rider.service.RiderRequestUtility;
 import com.example.foododeringapp.util.BottomDialog;
 import com.example.foododeringapp.util.Util;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.text.NumberFormat;
 
 public class Activity_Edit_Account extends BaseActivity  implements View.OnClickListener {
@@ -70,7 +74,7 @@ public class Activity_Edit_Account extends BaseActivity  implements View.OnClick
             super.handleMessage(msg);
         }
     };
-    Integer res;
+    private String postForm;
     private boolean selectClicked = false;
     BottomDialog fragment;
 
@@ -139,11 +143,9 @@ public class Activity_Edit_Account extends BaseActivity  implements View.OnClick
         riderNickName = rider.getNickName();
         riderSex = rider.getSex();
         riderPwd = rider.getPassword();
-        riderAdvatar = rider.getAdvatar();//还没用上
-        byte[] bytes = Base64.decode(riderAdvatar, Base64.DEFAULT);
-        Bitmap decodedByte =BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-
-        change_img.setImageBitmap(decodedByte);
+        riderAdvatar = rider.getAdvatar();//只有图片名没有后缀名
+        int image_id = getResources().getIdentifier(riderAdvatar,"mipmap",this.getPackageName());
+        change_img.setImageResource(image_id);
 
 
         //为三个按键设置监听
@@ -161,7 +163,7 @@ public class Activity_Edit_Account extends BaseActivity  implements View.OnClick
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }*/
-        etNickName.setHint(rider.getNickName());
+        etNickName.setText(rider.getNickName());
         if (riderSex.equals("女")) {
             female.setChecked(true);
         } else {
@@ -196,6 +198,7 @@ public class Activity_Edit_Account extends BaseActivity  implements View.OnClick
                 String newSex;
                 String encodedString;
                 //Uri uri = Uri.parse(sharePreference.getString("uri",""));
+
                 change_img.setDrawingCacheEnabled(true);
                 Bitmap bitmap = Bitmap.createBitmap(change_img.getDrawingCache());
                 change_img.setDrawingCacheEnabled(false);
@@ -242,7 +245,7 @@ public class Activity_Edit_Account extends BaseActivity  implements View.OnClick
                                 try {
                                     String finalPwd = newPwd;
                                     Log.i("新密码",finalPwd);
-                                    res = RiderRequestUtility.ChangeRiderInfo(riderID, newNickName, newSex, finalPwd,encodedString);
+                                    postForm = RiderPostUtility.ChangeRiderInfo(riderID, newNickName, newSex, finalPwd,encodedString);
                                     handler.post(runnableModfInfo);
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -278,7 +281,7 @@ public class Activity_Edit_Account extends BaseActivity  implements View.OnClick
                         @Override
                         public void run() {
                             try {
-                                res = RiderRequestUtility.ChangeRiderInfo(riderID, newNickName, newSex, finalPwd,encodedString);
+                                postForm = RiderPostUtility.ChangeRiderInfo(riderID, newNickName, newSex, finalPwd,encodedString);
                                 handler.post(runnableModfInfo);
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -299,6 +302,9 @@ public class Activity_Edit_Account extends BaseActivity  implements View.OnClick
         @Override
         public void run() {
             pg.dismiss();
+            Gson gson = new Gson();
+            RestFulBean<Integer> restFulBean = gson.fromJson(postForm, new TypeToken<RestFulBean<Integer>>(){}.getType());
+            int res = restFulBean.getData();
             if (res==0) {
                 Util.showToast(Activity_Edit_Account.this, "服务器出错，信息更新失败，请重试！");
                 return;

@@ -156,7 +156,7 @@ public class Activity_Rider_Main extends BaseActivity {
     /**
      *自定义类
      */
-    class NetworkChangeReceiver extends BroadcastReceiver {
+    public class NetworkChangeReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             //getSystemService()方法得到ConnectivityManager实例，这是一个系统服务类，用于管理网络连接
