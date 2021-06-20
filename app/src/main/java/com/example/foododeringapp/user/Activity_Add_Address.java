@@ -10,22 +10,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Activity_Add_Address extends Activity{
 //    <!--    uaName uaPhone uaAddress radioGroup_sex:ua_male ua_female btnChangeInfo-->
     RadioGroup radioGroup_sex;
     RadioButton ua_male, ua_female;
-    TextView uaName, uaPhone, uaAddress;
+    EditText uaName, uaPhone, uaAddress;
     Button btnChangeInfo;
+    Intent intent;
     Address add_address;
     private int addressId;
-    private int userId;     //用户编号
+    private int userId, result;     //用户编号
     private String receiveName;//收件人
     private String sex;        //性别
-    private int receivePhone;    //联系电话
+    private String receivePhone;    //联系电话
     private String addressName;
 
 
@@ -33,13 +39,9 @@ public class Activity_Add_Address extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__add__address);
-        getContentData();
-        initView();
-    }
-
-    private void getContentData() {
-        Intent intent = getIntent();
+        intent = getIntent();
         userId = intent.getIntExtra("userID", -1);
+        initView();
     }
 
     private void initView() {
@@ -48,12 +50,26 @@ public class Activity_Add_Address extends Activity{
             @Override
             public void onClick(View v) {
                 receiveName = uaName.getText().toString();
-                receivePhone = Integer.parseInt(uaPhone.getText().toString());
-                radioGroup_sex.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener) (group, checkedId) -> {
-                    RadioButton radbtn = (RadioButton) findViewById(checkedId);
+                receivePhone = uaPhone.getText().toString();
+                addressName = uaAddress.getText().toString();
+                sex = "男";
+                radioGroup_sex.setOnCheckedChangeListener((group, checkedId) -> {
+                    RadioButton radbtn = findViewById(checkedId);
                     sex = (String) radbtn.getText();
                 });
-                UserRequestUtility.addAddress(userId, receiveName, sex, receivePhone, addressName);
+                result = UserRequestUtility.addAddress(userId, receiveName, sex, receivePhone, addressName);
+                if(result == 1){
+                    Toast.makeText(getApplicationContext(), "新增地址成功！", Toast.LENGTH_SHORT).show();
+                }
+                TimerTask task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        setResult(RESULT_OK, intent);
+                        finish();
+                    }
+                };
+                Timer timer = new Timer();
+                timer.schedule(task, 1500);//1.5秒后执行返回
             }
         });
     }

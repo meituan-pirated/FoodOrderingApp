@@ -3,6 +3,7 @@ package com.example.foododeringapp.user;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.foododeringapp.R;
 import com.example.foododeringapp.bean.Address;
+import com.example.foododeringapp.control.BaseActivity;
 import com.example.foododeringapp.user.service.UserRequestUtility;
 
 import android.content.Intent;
@@ -14,8 +15,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Activity_Change_Address extends AppCompatActivity {
+import java.util.TimerTask;
+
+public class Activity_Change_Address extends BaseActivity {
     private int addressID, userID;
     private EditText caName, caPhone, caAddress;
     private Button btnEditInfo;
@@ -23,9 +27,10 @@ public class Activity_Change_Address extends AppCompatActivity {
     private RadioButton ca_male, ca_female;
     private Address address;
 
+    Intent intent;
     private String receiveName;//收件人
     private String sex;        //性别
-    private int receivePhone;    //联系电话
+    private String receivePhone;    //联系电话
     private String addressName;
 
 //    <!--    caName收件人 radioGroup_sex_edit性别:ca_male、ca_female
@@ -35,11 +40,11 @@ public class Activity_Change_Address extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__change__address);
         getIntentData();
+        findViewById();
         initView();
     }
 
     private void initView() {
-        findViewById();
         address = UserRequestUtility.getAddressByID(addressID);
         caName.setText(address.getReceiveName());
         caPhone.setText(address.getReceivePhone());
@@ -49,16 +54,25 @@ public class Activity_Change_Address extends AppCompatActivity {
         }else if(address.getSex() != "男"){
             ca_male.setChecked(true);
         }
-        btnEditInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                receiveName = caName.getText().toString();
-                receivePhone = Integer.parseInt(caPhone.getText().toString());
-                radioGroup_sex_edit.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener) (group, checkedId) -> {
-                    RadioButton radbtn = (RadioButton) findViewById(checkedId);
-                    sex = (String) radbtn.getText();
-                });
-                UserRequestUtility.editAddress(addressID, receiveName, sex, receivePhone, addressName);
+        btnEditInfo.setOnClickListener(v -> {
+            receiveName = caName.getText().toString();
+            addressName = caAddress.getText().toString();
+            receivePhone = caPhone.getText().toString();
+            sex = address.getSex();
+            radioGroup_sex_edit.setOnCheckedChangeListener((group, checkedId) -> {
+                RadioButton radbtn = findViewById(checkedId);
+                sex = (String) radbtn.getText();
+            });
+            int result = UserRequestUtility.editAddress(addressID, receiveName, sex, receivePhone, addressName);
+            if(result == 1){
+                Toast.makeText(getApplicationContext(), "修改地址成功！", Toast.LENGTH_SHORT).show();
+                TimerTask task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        setResult(RESULT_OK, intent);
+                        finish();
+                    }
+                };
             }
         });
     }
@@ -74,9 +88,9 @@ public class Activity_Change_Address extends AppCompatActivity {
     }
 
     private void getIntentData() {
-        Intent intent = getIntent();
+        intent = getIntent();
         addressID = intent.getIntExtra("addressID", -1);
         userID = intent.getIntExtra("userID", -1);
-        Log.i("editAddress: userID", String.valueOf(userID));
+//        Log.i("editAddress: userID", String.valueOf(userID));
     }
 }

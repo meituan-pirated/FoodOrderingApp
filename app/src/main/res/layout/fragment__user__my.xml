@@ -7,13 +7,15 @@
     android:orientation="vertical"
     tools:context=".user.fragment.Fragment_User_My">
 
-<!--    my_id my_name my_sex my_phone my_address user_my_logout-->
+<!--    my_id my_name my_sex my_phone my_address
+user_my_logout my_userInfo_manage-->
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/colorPrimary"
-        android:orientation="vertical"
-        android:layout_marginBottom="10dp">
+        android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/my_img"
@@ -22,20 +24,20 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:src="@drawable/fish"
-            app:civ_border_overlay="false"
             app:civ_border_color="@color/white"
-            app:civ_border_width="3dp"/>
+            app:civ_border_overlay="false"
+            app:civ_border_width="3dp" />
 
         <TextView
             android:id="@+id/my_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp"
             android:text="201821130271"
             android:textColor="@color/white"
-            android:textSize="32sp" />
+            android:textSize="26sp" />
 
     </LinearLayout>
 
@@ -53,7 +55,7 @@
             android:padding="20dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="姓 名"
@@ -66,13 +68,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:text="陆大帅" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/spacing_minor"
-                android:src="@drawable/ic_baseline_arrow_forward" />
         </LinearLayout>
 
         <View
@@ -100,12 +95,6 @@
                 android:text="女"
                 android:textSize="20sp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/spacing_minor"
-                android:src="@drawable/ic_baseline_arrow_forward" />
         </LinearLayout>
 
         <View
@@ -134,12 +123,6 @@
                 android:textSize="20sp"
                 android:text="15871872061" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/spacing_minor"
-                android:src="@drawable/ic_baseline_arrow_forward" />
         </LinearLayout>
 
         <View
@@ -148,9 +131,9 @@
             android:background="@color/divider" />
 
         <LinearLayout
+            android:id="@+id/my_address_manage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/my_address_manage"
             android:padding="20dp">
 
             <TextView
@@ -162,11 +145,43 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/my_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="管理"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/spacing_minor"
+                android:src="@drawable/ic_baseline_arrow_forward" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/divider" />
+
+        <LinearLayout
+            android:id="@+id/my_userInfo_manage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="个人信息"
+                android:textColor="@color/primary_text"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="管理"
+                android:textSize="20sp" />
 
             <ImageView
                 android:layout_width="wrap_content"

@@ -7,6 +7,7 @@ import com.example.foododeringapp.bean.Merchant;
 import com.example.foododeringapp.bean.RestFulBean;
 import com.example.foododeringapp.bean.User;
 import com.example.foododeringapp.bean.UserOrder;
+import com.example.foododeringapp.bean.orderProducts;
 import com.example.foododeringapp.service.RequestManager;
 import com.example.foododeringapp.service.Requests;
 import com.example.foododeringapp.util.Util;
@@ -18,11 +19,12 @@ import java.util.List;
 
 public class UserRequestUtility {
     /**
-     * 通过ruquestUrl获取数据
+     *      通过ruquestUrl获取数据
      *      其中requestManager接口通过requests类的实现处理了后端传来的数据
      *
      */
-    private static Boolean resultOrder, result;
+    private static Boolean resultOrder;
+    private static int result;
     private static User userInfo;
     private static Address address;
 
@@ -51,6 +53,18 @@ public class UserRequestUtility {
         return allMerchantsList;
     }
 
+
+    public static List<Merchant> getMerchantsByLook(String keyword) {
+        try {
+            RestFulBean<List<Merchant>> restFulBean = requestManager.request(requestUrl + "UserOpera/getMerchantsByLook?keyword="+keyword, new TypeToken<RestFulBean<List<Merchant>>>() {
+            }.getType());
+            allMerchantsList = restFulBean.getData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return allMerchantsList;
+
+    }
 
     /**
      * 获取用户全部订单
@@ -102,20 +116,31 @@ public class UserRequestUtility {
 
     /**
      * 插入订单
-     *
+     *insertOrder(userID, merchantID, addressID, orderNote, order_price, remarkContent, orderState, getTime(),selectedList);
      * @return
      */
-    public static Boolean insertOrder(int userID, int merchantID, int addressID, double order_price, String remarkContent, String orderState, ArrayList<Foods> selectedList){
+    public static int insertOrder(int userID, int merchantID, int addressID, String orderNote, double order_price, String remarkContent, String orderState, String orderTime){
         try{
-            RestFulBean<Boolean> restFulBean = requestManager.request(requestUrl + "UserOpera/insertOrder?userID="+userID
-                    +"&merchantID="+merchantID+"&addressID="+addressID+"&order_price="+order_price+"&remarkContent=" +remarkContent
-                            +"orderState="+orderState+"selectedList="+selectedList
-                    , new TypeToken<RestFulBean<Boolean>>() {}.getType());
-            resultOrder = restFulBean.getData();
+            RestFulBean<Integer> restFulBean = requestManager.request(requestUrl + "UserOpera/insertOrder?userID="+userID
+                    +"&merchantID="+merchantID+"&addressID="+addressID+"&orderNote="+orderNote+"&orderPrice="+order_price
+                    +"&remarkContent=" +remarkContent +"&orderState="+orderState+"&orderTime=" +orderTime
+                    , new TypeToken<RestFulBean<Integer>>() {}.getType());
+            result = restFulBean.getData();
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return resultOrder;
+        return result;
+    }
+
+    public static int insertOrderDetails(int order_id, int product_id, int amount){
+        try{
+            RestFulBean<Integer> restFulBean = requestManager.request(requestUrl + "UserOpera/insertOrderDetails?order_id="+
+            order_id + "&product_id="+ product_id+"&amount="+amount, new TypeToken<RestFulBean<Integer>>() {}.getType());
+            result = restFulBean.getData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
@@ -171,11 +196,11 @@ public class UserRequestUtility {
      *
      * @return
      */
-    public static boolean addAddress(int userId, String receiveName, String sex, int receivePhone, String addressName){
+    public static int addAddress(int userId, String receiveName, String sex, String receivePhone, String addressName){
         try{
-            RestFulBean<Boolean> restFulBean = requestManager.request(requestUrl + "UserOpera/addAddress?userID="+userId
+            RestFulBean<Integer> restFulBean = requestManager.request(requestUrl + "UserOpera/addAddress?userId="+userId
                             +"&receiveName="+receiveName+"&sex="+sex+"&receivePhone="+receivePhone+"&addressName="+addressName
-                    , new TypeToken<RestFulBean<Boolean>>() {}.getType());
+                    , new TypeToken<RestFulBean<Integer>>() {}.getType());
             result = restFulBean.getData();
         }catch (Exception e) {
             e.printStackTrace();
@@ -183,17 +208,16 @@ public class UserRequestUtility {
         return result;
     }
 
-
     /**
      * 修改地址
      *
      * @return
      */
-    public static boolean editAddress(int addressID, String receiveName, String sex, int receivePhone, String addressName){
+    public static int editAddress(int addressID, String receiveName, String sex, String receivePhone, String addressName){
         try{
-            RestFulBean<Boolean> restFulBean = requestManager.request(requestUrl + "UserOpera/editAddress?addressID="+addressID
+            RestFulBean<Integer> restFulBean = requestManager.request(requestUrl + "UserOpera/editAddress?addressID="+addressID
                             +"&receiveName="+receiveName+"&sex="+sex+"&receivePhone="+receivePhone+"&addressName="+addressName
-                    , new TypeToken<RestFulBean<Boolean>>() {}.getType());
+                    , new TypeToken<RestFulBean<Integer>>() {}.getType());
             result = restFulBean.getData();
         }catch (Exception e) {
             e.printStackTrace();
@@ -206,9 +230,9 @@ public class UserRequestUtility {
      *
      * @return
      */
-    public static boolean deleteUserAddress(int addressID){
+    public static int deleteUserAddress(int addressID){
         try{
-            RestFulBean<Boolean> restFulBean = requestManager.request(requestUrl + "UserOpera/addAddress?userID="+addressID, new TypeToken<RestFulBean<Boolean>>() {}.getType());
+            RestFulBean<Integer> restFulBean = requestManager.request(requestUrl + "UserOpera/deleteUserAddress?addressID="+addressID, new TypeToken<RestFulBean<Integer>>() {}.getType());
             result = restFulBean.getData();
         }catch (Exception e) {
             e.printStackTrace();

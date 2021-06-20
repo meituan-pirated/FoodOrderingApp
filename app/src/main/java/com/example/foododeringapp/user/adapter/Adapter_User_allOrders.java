@@ -79,7 +79,7 @@ public class Adapter_User_allOrders  extends RecyclerView.Adapter<Adapter_User_a
 
         public ViewHolder(View itemView) {
             super(itemView);
-            user_order_list = itemView.findViewById(R.id.user_order_list);
+            //user_order_list = itemView.findViewById(R.id.user_order_list);
             order_id = itemView.findViewById(R.id.order_id);
             order_note = itemView.findViewById(R.id.order_note);
             order_state = itemView.findViewById(R.id.order_state);

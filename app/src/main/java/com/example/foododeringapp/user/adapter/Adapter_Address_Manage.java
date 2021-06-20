@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,12 +26,11 @@ import com.example.foododeringapp.user.service.UserRequestUtility;
 
 import java.util.List;
 
-public class Adapter_Address_Manage  extends RecyclerView.Adapter<Adapter_Address_Manage.ViewHolder>{
-    private final List<Address> dataList;
+public class Adapter_Address_Manage extends RecyclerView.Adapter<Adapter_Address_Manage.ViewHolder>{
+    private List<Address> dataList;
     private final LayoutInflater mInflater;
     private Activity_Address_Manage mContext;
     private final int userID;
-
 
 
     public Adapter_Address_Manage(Activity_Address_Manage mContext, List<Address> dataList, int userID){
@@ -50,24 +50,29 @@ public class Adapter_Address_Manage  extends RecyclerView.Adapter<Adapter_Addres
     @Override
     public void onBindViewHolder(@NonNull Adapter_Address_Manage.ViewHolder holder, int position) {
         Address address = dataList.get(position);
-        int addressID = address.getAddressId();
+        int addressID = address.getAddress_id();
+        holder.address_phonetv.setText(address.getReceivePhone());
+        holder.address_nametv.setText(address.getReceiveName());
+        holder.address_addresstv.setText(address.getAddressName());
         holder.address_delete.setOnClickListener(v -> {
             AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
             dialog.setTitle("提示？");
-            dialog.setMessage("您确定要清空购物车中所有商品？");
+            dialog.setMessage("您确定要删除地址？");
             dialog.setCancelable(false);
             dialog.setPositiveButton("确定", (dialog1, which) -> {
-                UserRequestUtility.deleteUserAddress(addressID);
+                int result = UserRequestUtility.deleteUserAddress(addressID);
+                if(result == 1){
+                    Toast.makeText(mContext, "地址删除成功！", Toast.LENGTH_SHORT).show();
+                }
+                mContext.showList();
             });
             dialog.setNegativeButton("取消", (dialog12, which) -> {
             });
             dialog.show();
+
         });
         holder.address_edit.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, Activity_Change_Address.class);
-            intent.putExtra("userID", userID);
-            intent.putExtra("addressID", addressID);
-            mContext.startActivity(intent);
+            mContext.changeAddress(addressID);
         });
     }
 
@@ -84,7 +89,7 @@ public class Adapter_Address_Manage  extends RecyclerView.Adapter<Adapter_Addres
 
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView address_nametv, address_phonetv, address_addresstv;
-        Button address_delete, address_edit;
+        ImageButton address_delete, address_edit;
 //      ImageButton btn_delete, btn_edit;
 
         public ViewHolder(View itemView) {

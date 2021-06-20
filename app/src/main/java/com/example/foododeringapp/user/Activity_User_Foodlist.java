@@ -1,5 +1,6 @@
 package com.example.foododeringapp.user;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -22,7 +23,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
@@ -52,7 +55,6 @@ public class Activity_User_Foodlist extends Activity implements View.OnClickList
     private ImageView imgCart;
     private TextView tvCount, tvCost, tvSubmit, tvTips;//购买数量，总价格，结算，10元起送
 
-    private View mEmptyView;
 
     private Adapter_User_allFoods adapter;
     private List<Foods> foodsList;
@@ -85,6 +87,8 @@ public class Activity_User_Foodlist extends Activity implements View.OnClickList
         super.onCreate(savedInstanceState);
         pg = new ProgressDialog(this);
         setContentView(R.layout.activity__user__foodlist);
+//        //将android自带的返回键启动，并通过重写onOptionsItemSelected实现返回键的功能
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getIntentData();
         initView();
         selectedList = new SparseArray<>();
@@ -95,11 +99,9 @@ public class Activity_User_Foodlist extends Activity implements View.OnClickList
 
     private void getIntentData() {
         Intent intent = getIntent();
-        // intent.putExtra("merchantID", merchant.getId());
-        // intent.putExtra("userID", userID);
         merchantID = intent.getIntExtra("merchantID", -1);
         userID = intent.getIntExtra("userID", -1);
-        Log.i("userID", String.valueOf(userID));
+//        Log.i("userID", String.valueOf(userID));
     }
 
     private void showList() {
@@ -136,7 +138,6 @@ public class Activity_User_Foodlist extends Activity implements View.OnClickList
                 LinearLayoutManager layoutManager = new LinearLayoutManager(Activity_User_Foodlist.this);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(adapter);
-                recyclerView.setEmptyView(mEmptyView);
 //                adapter.setOnItemClickListener(new .OnItemClickListener() {//点击条目跳转到食品详情页
 //                    @Override
 //                    public void onItemClick(View view, int position) {
@@ -156,7 +157,6 @@ public class Activity_User_Foodlist extends Activity implements View.OnClickList
     };
 
     private void initView() {
-        // mEmptyView = findViewById(R.id.id_empty_view);
         recyclerView = findViewById(R.id.foodRecycleView);
         bottom = findViewById(R.id.bottom);
         tvCount = findViewById(R.id.tvCount);
@@ -502,5 +502,43 @@ public class Activity_User_Foodlist extends Activity implements View.OnClickList
                 }
             }
         }).start();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case android.R.id.home:
+                Intent intent = new Intent();
+//                Bundle bundle = new Bundle();
+//                intent.putExtras(bundle);
+                setResult(101, intent);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //baseActibity方法，删除当前页面
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        //如果是返回键
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            //重写返回键
+            //向Fragment_Home页面返回结果
+            Intent intent = new Intent();
+//            Bundle bundle = new Bundle();
+//            bundle.putInt("business_id", business_id);
+//            bundle.putString("product_id", "123123" );
+//            intent.putExtras(bundle);
+            setResult(312, intent);
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

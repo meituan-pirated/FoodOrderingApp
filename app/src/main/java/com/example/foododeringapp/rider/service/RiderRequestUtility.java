@@ -119,13 +119,12 @@ public class RiderRequestUtility {
 
     public static Integer ChangeRiderInfo(String riderID, String newNickName, String newSex, String finalPwd, String advatarEncoded) {
         try {
-            RestFulBean<Integer> restFulBean= requestManager.request(requestUrl + "RiderOpera/changeRiderInfo?rider_id=" + riderID + "&nick_name="+newNickName+"&sex="+newSex+"&password="+finalPwd+"&advatar="+advatarEncoded, new TypeToken<RestFulBean<Integer>>() {
+            RestFulBean<Integer> restFulBean = requestManager.request(requestUrl + "RiderOpera/changeRiderInfo?rider_id=" + riderID + "&nick_name="+newNickName+"&sex="+newSex+"&password="+finalPwd+"&advatar="+advatarEncoded, new TypeToken<RestFulBean<Integer>>() {
             }.getType());
             res = restFulBean.getData();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return res;
-
     }
 }

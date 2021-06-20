@@ -6,12 +6,21 @@
     android:orientation="vertical"
     android:padding="10dp">
 
+<!--    user_order_merchant user_order_rscore user_order_bscore-->
 <!--    user_order_price user_order_address user_order_state-->
 <!--    待处理订单编号-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/user_order_merchant"
+            android:text="山西面馆"
+            android:textColor="@color/black"
+            android:layout_marginRight="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -116,6 +125,7 @@
             android:text="元"/>
 
     </LinearLayout>
+
     <!--    分割线-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -124,5 +134,50 @@
         android:orientation="horizontal"
         android:paddingTop="10dp"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="骑手评价："/>
+
+        <RatingBar
+            android:id="@+id/user_order_rscore"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="5"
+            android:layout_marginBottom="4dp"
+            android:stepSize="1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="商家评价："
+            android:layout_marginLeft="20dp"/>
+
+        <RatingBar
+            android:id="@+id/user_order_bscore"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="5"
+            android:layout_marginBottom="4dp"
+            android:stepSize="1" />
+
+    </LinearLayout>
+
+    <!--    分割线-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dip"
+        android:background="@drawable/divider"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"/>
 </LinearLayout>

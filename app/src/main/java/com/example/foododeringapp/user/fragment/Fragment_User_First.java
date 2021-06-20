@@ -7,13 +7,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 
@@ -25,6 +29,7 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.example.foododeringapp.R;
 import com.example.foododeringapp.bean.Merchant;
 import com.example.foododeringapp.user.Activity_User_Main;
+import com.example.foododeringapp.user.adapter.Adapter_LeftRecycle;
 import com.example.foododeringapp.user.adapter.Adapter_User_allMerchants;
 import com.example.foododeringapp.user.service.UserRequestUtility;
 import com.example.foododeringapp.widget.EmptyRecyclerView;
@@ -45,9 +50,13 @@ public class Fragment_User_First extends Fragment implements SwipeRefreshLayout.
     private BottomSheetLayout bottomSheetLayout;
     private SwipeRefreshLayout swipeRefreshLayout;
     private EmptyRecyclerView recyclerView;
+    private RecyclerView leftRecycle;
+    private EditText rebot_info;
+    private Button btn_send;
     public Integer user_ID = 201821101;
 
     private Adapter_User_allMerchants adapter;
+   private Adapter_LeftRecycle left_adapter;
 
     //用于刷新
     private Handler handler = new Handler() {
@@ -58,6 +67,8 @@ public class Fragment_User_First extends Fragment implements SwipeRefreshLayout.
     };
 
     private ProgressDialog pg;
+
+    private String findform = null;
 
 
     @Nullable
@@ -111,6 +122,8 @@ public class Fragment_User_First extends Fragment implements SwipeRefreshLayout.
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setEmptyView(mEmptyView);
+            }else{
+                Toast.makeText(getActivity(), "没有商家数据", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -124,7 +137,12 @@ public class Fragment_User_First extends Fragment implements SwipeRefreshLayout.
         slider = getActivity().findViewById(R.id.slider);
 
         recyclerView = getActivity().findViewById(R.id.user_merchant_RecyclerView);
+//        leftRecycle = getActivity().findViewById(R.id.leftRecycle);
 
+        btn_send = getActivity().findViewById(R.id.btn_send);
+        rebot_info = getActivity().findViewById(R.id.rebot_info);
+
+        // 轮播图
         HashMap<String, Integer> photos = new HashMap<>();
         photos.put("pizza 新品", R.drawable.pizza);
         photos.put("超好吃的牛肉饭", R.drawable.beefrice);
@@ -146,11 +164,53 @@ public class Fragment_User_First extends Fragment implements SwipeRefreshLayout.
         slider.setCustomAnimation(new DescriptionAnimation());
         slider.setDuration(2000);
         slider.addOnPageChangeListener(this);
+
+//        left_adapter = new Adapter_LeftRecycle(getActivity());
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+//        leftRecycle.setLayoutManager(layoutManager);
+//        leftRecycle.setAdapter(left_adapter);
+//        leftRecycle.setScrollingTouchSlop(0);
+
+        btn_send.setOnClickListener(v -> {
+            findform = rebot_info.getText().toString();
+            if(findform != null){
+//                Log.i("lookfor:", findform);
+                merchantList = UserRequestUtility.getMerchantsByLook(findform);
+                if (merchantList != null && merchantList.size() > 0){
+                    adapter = new Adapter_User_allMerchants(merchantList, Fragment_User_First.this, getActivity(), user_ID);
+                    LinearLayoutManager layoutManager1 = new LinearLayoutManager(getActivity());
+                    recyclerView.setLayoutManager(layoutManager1);
+                    recyclerView.setAdapter(adapter);
+                }else{
+                    Toast.makeText(getActivity(), "没有相关的商家！", Toast.LENGTH_SHORT).show();
+                }
+
+            }else{
+                Toast.makeText(getActivity(), "请输入要查找的内容", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public void onRefresh() {
-
+        showList();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    //刷新控件停止两秒后消失
+                    Thread.sleep(1000);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+                    });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     @Override

@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,9 +57,10 @@ public class Activity_Address_Manage extends AppCompatActivity implements View.O
     private void getIntentData() {
         Intent intent = getIntent();
         userID = intent.getIntExtra("userID", -1);
+        Log.i("userID", String.valueOf(userID));
     }
 
-    private void showList() {
+    public void showList() {
         pg.setMessage("数据加载中...");
         pg.show();
         if (Activity_User_Main.networkState == 0) {
@@ -69,7 +71,8 @@ public class Activity_Address_Manage extends AppCompatActivity implements View.O
         new Thread() {
             public void run() {
                 try {
-                    addressList = UserRequestUtility.getAllAddress(userID);
+                    addressList = UserRequestUtility.getAddressListById(userID);
+                    Log.i("addressNumber:", String.valueOf(addressList.size()));
                     if(addressList.size() != 0){
                         handler.post(runnableFoodList);
                     }else{
@@ -104,12 +107,12 @@ public class Activity_Address_Manage extends AppCompatActivity implements View.O
         addAddressTv = findViewById(R.id.addAddressTv);
     }
 
-    private void initView() {
+    public void initView() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
         TextView toolbarText = findViewById(R.id.toolbar_text);
         toolbarText.setText("地址管理");
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -125,11 +128,39 @@ public class Activity_Address_Manage extends AppCompatActivity implements View.O
         switch (v.getId()) {
             case R.id.addAddressTv:
                 Intent intent = new Intent(this, Activity_Add_Address.class);
-                intent.putExtra("userID",userID);
+                intent.putExtra("userID", userID);
                 startActivityForResult(intent, 104);
                 break;
             default:
                 break;
         }
     }
+
+    public void changeAddress(int addressID) {
+        Intent intent = new Intent(this, Activity_Change_Address.class);
+        intent.putExtra("userID", userID);
+        intent.putExtra("addressID", addressID);
+        this.startActivityForResult(intent, 105);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 104://增加地址页面返回，刷新
+                if (resultCode == RESULT_OK) {
+                    showList();
+                }
+                break;
+            case 105://增加地址页面返回，刷新
+                if (resultCode == RESULT_OK) {
+                    showList();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+
 }

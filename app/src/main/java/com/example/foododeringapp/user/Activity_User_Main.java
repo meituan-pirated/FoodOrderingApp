@@ -61,7 +61,7 @@ public class Activity_User_Main extends BaseActivity {
         toolbarText = findViewById(R.id.toolbar_text);
         toolbarText.setText("中南大食堂");
         //使用toolbar,外观功能和ActionBar一致
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
         //加载底部导航栏及选中事件
         loadBottomNavigationBar();
     }

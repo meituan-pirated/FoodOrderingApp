@@ -32,7 +32,7 @@ import com.example.foododeringapp.user.service.UserRequestUtility;
 
 public class Fragment_User_My extends Fragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 //<!--    my_id my_name my_sex my_phone my_address user_my_logout-->
-    private LinearLayout my_address_manage;
+    private LinearLayout my_address_manage, my_userInfo_manage;
     private TextView my_id, my_name, my_sex, my_phone, my_address, user_my_logout;
     User userInfo;
     int userID = 201821101;
@@ -107,6 +107,7 @@ public class Fragment_User_My extends Fragment implements SwipeRefreshLayout.OnR
         pg = new ProgressDialog(getActivity());
         user_my_logout.setOnClickListener(this);
         my_address_manage.setOnClickListener(this);
+        my_userInfo_manage.setOnClickListener(this);
     }
 
 //    my_id, my_name, my_sex, my_phone, my_address, user_my_logout;
@@ -115,9 +116,9 @@ public class Fragment_User_My extends Fragment implements SwipeRefreshLayout.OnR
         my_name = getActivity().findViewById(R.id.my_name);
         my_sex = getActivity().findViewById(R.id.my_sex);
         my_phone = getActivity().findViewById(R.id.my_phone);
-        my_address = getActivity().findViewById(R.id.my_address);
         user_my_logout = getActivity().findViewById(R.id.user_my_logout);
         my_address_manage = getActivity().findViewById(R.id.my_address_manage);
+        my_userInfo_manage = getActivity().findViewById(R.id.my_userInfo_manage);
     }
 
     @Override
@@ -135,6 +136,9 @@ public class Fragment_User_My extends Fragment implements SwipeRefreshLayout.OnR
                 Intent intent = new Intent(getActivity(), Activity_Address_Manage.class);
                 intent.putExtra("userID", userID);
                 startActivity(intent);
+                break;
+            case R.id.my_userInfo_manage:
+                //跳转到用户信息管理页面
                 break;
             default:
                 break;

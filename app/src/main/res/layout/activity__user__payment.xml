@@ -107,19 +107,15 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_gravity="center"
-        android:src="@drawable/alipay_logo"/>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="支付成功"
+        android:text="支付"
         android:textSize="23sp"
-        android:id="@+id/success"
+        android:id="@+id/pay_operation"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimary"
         android:layout_marginTop="20dp"
+        android:padding="10dp"
         android:layout_gravity="center"/>
 </LinearLayout>

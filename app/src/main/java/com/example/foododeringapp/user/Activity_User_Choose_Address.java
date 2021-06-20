@@ -107,10 +107,10 @@ public class Activity_User_Choose_Address extends AppCompatActivity implements V
                     Intent intent = new Intent();
                     intent.putExtra("name", address.getReceiveName());
                     intent.putExtra("phoneNumber", address.getReceivePhone());
-                    Log.i("phonenum", String.valueOf(address.getReceivePhone()));
+                    //Log.i("phonenum", String.valueOf(address.getReceivePhone()));
                     intent.putExtra("address", address.getAddressName());
                     intent.putExtra("sex", address.getSex());
-                    intent.putExtra("addressID", address.getAddressId());
+                    intent.putExtra("addressID", address.getAddress_id());
                     setResult(RESULT_OK, intent);
                     finish();
                 }

@@ -52,8 +52,8 @@ public class Adapter_User_OrderDetails extends RecyclerView.Adapter<Adapter_User
         holder.orderDetails_name.setText(products.getProductName());
         holder.orderDetails_num.setText(orderDetails.getAmount()+"");
         holder.orderDetails_salePrice.setText(products.getSalePrice()+"");
-        holder.orderDetails_deliveryPrice.setText(products.getDeliveryPrice()+"");
-        holder.orderDetails_sum.setText(((products.getSalePrice() + products.getDeliveryPrice())*orderDetails.getAmount())+"");
+        //holder.orderDetails_deliveryPrice.setText(products.getDeliveryPrice()+"");
+        //holder.orderDetails_sum.setText(((products.getSalePrice() + products.getDeliveryPrice())*orderDetails.getAmount())+"");
 
     }
 
@@ -72,7 +72,7 @@ public class Adapter_User_OrderDetails extends RecyclerView.Adapter<Adapter_User
             orderDetails_name = itemView.findViewById(R.id.orderDetails_name);
             orderDetails_num = itemView.findViewById(R.id.orderDetails_num);
             orderDetails_salePrice = itemView.findViewById(R.id.orderDetails_salePrice);
-            orderDetails_deliveryPrice = itemView.findViewById(R.id.orderDetails_deliveryPrice);
+            //orderDetails_deliveryPrice = itemView.findViewById(R.id.orderDetails_deliveryPrice);
             orderDetails_sum = itemView.findViewById(R.id.orderDetails_sum);
         }
     }

@@ -43,7 +43,8 @@ public class Activity_User_Balance extends BaseActivity implements View.OnClickL
     private RecyclerView orderRecyclerView;
     private Adapter_User_Balance adapter;
     private String name, sex, addressName, avatar, remarkContent;
-    private int phoneNumber;
+    private String orderNote = "";
+    private String phoneNumber;
     private NumberFormat nf;
     //private double longitude, latitude;
 
@@ -88,7 +89,7 @@ public class Activity_User_Balance extends BaseActivity implements View.OnClickL
         toolbar.setTitle("");
         TextView toolbarText = findViewById(R.id.toolbar_text);
         toolbarText.setText("提交订单");
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -119,7 +120,6 @@ public class Activity_User_Balance extends BaseActivity implements View.OnClickL
         paycost = cost + 1;
     }
 
-    //这里结算部分有没有选择地址，不好判断
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -131,12 +131,16 @@ public class Activity_User_Balance extends BaseActivity implements View.OnClickL
                 else {
                     //Activity_User_Payment.actionStart(Activity_User_Balance.this, userId, cost, statusCode, userName, address, arrayList, remarkContent);
                     Intent intent = new Intent(context, Activity_User_Payment.class);
-                    intent.putExtra("userID", userID);
-                    intent.putExtra("merchantID", merchantID);
-                    intent.putExtra("remarkContent", remarkContent);
-                    intent.putExtra("orderState", "WAIT");
-                    intent.putExtra("addressID", addressID);
-                    intent.putExtra("order_price", paycost);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("selectedList", arrayList);
+                    bundle.putInt("userID", userID);
+                    bundle.putInt("merchantID", merchantID);
+                    bundle.putString("remarkContent", remarkContent);
+                    bundle.putString("orderState", "PAY");
+                    bundle.putInt("addressID", addressID);
+                    bundle.putDouble("order_price", paycost);
+                    bundle.putString("orderNote", orderNote);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
                 break;
@@ -171,15 +175,12 @@ public class Activity_User_Balance extends BaseActivity implements View.OnClickL
             case 103://地址选择页面需要返回data（包括String类型：name, phoneNumber, sex, addressName)
                 if (resultCode == RESULT_OK) {
                     name = data.getStringExtra("name");
-                    phoneNumber = data.getIntExtra("phoneNumber", -1);
+                    phoneNumber = data.getStringExtra("phoneNumber");
                     sex = data.getStringExtra("sex");
                     addressName = data.getStringExtra("address");
                     addressID = data.getIntExtra("addressID", -1);
-//                    longitude = data.getDoubleExtra("longitude", -1);
-//                    latitude = data.getDoubleExtra("latitude", -1);
-
                     user_name.setText(name);
-                    user_phone.setText(String.valueOf(phoneNumber));
+                    user_phone.setText(phoneNumber);
                     user_address.setText(addressName);
 
                     if (sex.equals("男")) {
@@ -195,8 +196,8 @@ public class Activity_User_Balance extends BaseActivity implements View.OnClickL
                 break;
             case 102://备注页面（返回备注信息remarkContent：String类型）
                 if (resultCode == RESULT_OK) {
-                    remarkContent = data.getStringExtra("remarkContent");
-                    ub_remark.setText(remarkContent);
+                    orderNote = data.getStringExtra("remarkContent");
+                    ub_remark.setText(orderNote);
                 }
                 break;
             default:

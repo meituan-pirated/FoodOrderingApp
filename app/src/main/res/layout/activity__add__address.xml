@@ -27,14 +27,14 @@
             android:textColor="@color/primary_text"
             android:textSize="26sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/uaName"
             android:layout_width="match_parent"
             android:layout_height="@dimen/cell_normal"
             android:gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:text="古力是哇"
-            android:textSize="28dp" />
+            android:layout_marginStart="10dp"
+            android:hint="请输入姓名"
+            android:textSize="22sp" />
 
     </LinearLayout>
 
@@ -54,14 +54,14 @@
             android:textColor="@color/primary_text"
             android:textSize="26sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/uaPhone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/cell_normal"
             android:gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:text="15871872000"
-            android:textSize="28dp" />
+            android:layout_marginStart="10dp"
+            android:hint="1587000"
+            android:textSize="22sp" />
 
     </LinearLayout>
 
@@ -81,14 +81,14 @@
             android:textColor="@color/primary_text"
             android:textSize="26sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/uaAddress"
             android:layout_width="match_parent"
             android:layout_height="@dimen/cell_normal"
             android:gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:text="临湖四栋"
-            android:textSize="28dp" />
+            android:layout_marginStart="10dp"
+            android:hint="临湖四栋"
+            android:textSize="22sp" />
 
     </LinearLayout>
 
@@ -104,6 +104,7 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="性 别:"
+            android:textColor="@color/primary_text"
             android:gravity="center"
             android:textSize="26sp" />
 
@@ -130,7 +131,7 @@
                 android:layout_marginStart="@dimen/spacing_major"
                 android:layout_marginLeft="@dimen/spacing_major"
                 android:paddingLeft="@dimen/spacing_micro"
-                android:text="女生"
+                android:text="女士"
                 android:textSize="25sp" />
 
         </RadioGroup>
@@ -144,8 +145,9 @@
         android:layout_marginRight="12dp"
         android:layout_marginTop="22dp"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:padding="10dp"
         android:textSize="23sp"
+        android:background="@color/purple_200"
         android:layout_gravity="center"
         android:text="    增 加 收 货 地 址   " />
 </LinearLayout>
