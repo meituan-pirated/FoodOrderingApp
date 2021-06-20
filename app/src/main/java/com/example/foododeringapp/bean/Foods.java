@@ -14,65 +14,54 @@ public class Foods extends LitePalSupport implements Serializable{
     private String name;
     private String imageUrl;//图片
     private double price;//价格
-    private String ingredients;//配料
-    private String description;//简介
-    private int rating;//星级
+    private String descriptions;//简介
     public int count;//购买数量
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public String getIngredients() {
-        return ingredients;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
     }
 
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
+    public String getDescriptions() {
+        return descriptions;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptions(String description) {
+        this.descriptions = description;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public int getCount() {
+        return count;
     }
 
+    public void setCount(int count) {
+        this.count = count;
+    }
 }

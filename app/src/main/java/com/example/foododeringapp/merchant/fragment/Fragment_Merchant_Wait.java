@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-public class Fragment_Merchant_Wait extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener{
+public class Fragment_Merchant_Wait extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
     private List<Order> ordersList;     //待处理的订单合集
 
     private View mEmptyView;//无数据视图
@@ -57,7 +58,7 @@ public class Fragment_Merchant_Wait extends Fragment implements View.OnClickList
         }
     };
 
-    //网络请求时，弹出此框等待网络数据
+
     private ProgressDialog pg;
 
     private boolean changedState = false;
@@ -76,6 +77,7 @@ public class Fragment_Merchant_Wait extends Fragment implements View.OnClickList
         initView();
         pg = new ProgressDialog(getActivity());
         showList();
+
     }
 
     /**
@@ -122,12 +124,11 @@ public class Fragment_Merchant_Wait extends Fragment implements View.OnClickList
     Runnable runnableOrderList = new Runnable() {
         @Override
         public void run() {
-
             pg.dismiss();
 
             if (ordersList != null && ordersList.size() > 0) {
 //                给ordersList创建RecyclerView
-
+                orderWaitAdapter = new Adapter_OrdersWait(ordersList, Fragment_Merchant_Wait.this, getActivity());
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
                 recyclerView.setLayoutManager(layoutManager);
                 orderWaitAdapter = new Adapter_OrdersWait(ordersList, Fragment_Merchant_Wait.this, getActivity());
@@ -137,7 +138,6 @@ public class Fragment_Merchant_Wait extends Fragment implements View.OnClickList
         }
     };
 
-
     /**
      * ---------数据的处理--------
      */
@@ -146,11 +146,11 @@ public class Fragment_Merchant_Wait extends Fragment implements View.OnClickList
 
     }
 
-
     /**
-     * 根据订单编号改变订单状况
-     * @param order_id
-     * @param state
+     * 根据订单编号获取订单状况
+     *
+     * @param order_id 订单编号
+     * @return
      */
     public void changeOrderStateByOrderId(int order_id, String state){
 //        if(state == "ING"){
@@ -238,13 +238,13 @@ public class Fragment_Merchant_Wait extends Fragment implements View.OnClickList
             }
         }).start();
     }
-
-    /**
-     * 监听该界面中的组件
-     * @param v
-     */
-    @Override
-    public void onClick(View v) {
-
-    }
+//
+//    /**
+//     * 监听该界面中的组件
+//     * @param v
+//     */
+//    @Override
+//    public void onClick(View v) {
+//
+//    }
 }

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".user.Activity_User_Payment">
+
+<!--    merchantID = intent.getIntExtra("merchantID", -1);-->
+<!--    userID = intent.getIntExtra("userID", -1);-->
+<!--    addressID = intent.getIntExtra("addressID", -1);-->
+<!--    remarkContent = intent.getStringExtra("remarkContent");-->
+<!--    orderState = intent.getStringExtra("remarkContent");-->
+    <include layout="@layout/title"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="33dp"
+        android:background="@drawable/selector_common_item_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/spacing_minor"
+            android:text="商家编号"
+            android:layout_weight="1"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp" />
+
+        <!--            这里可以预计送达时间，读取系统时间，然后加半个小时-->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/spacing_minor"
+            android:text="123456"
+            android:layout_weight="1"
+            android:id="@+id/merchantID"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="14.0sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/selector_common_item_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/spacing_minor"
+            android:text="用户编号"
+            android:layout_weight="1"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp" />
+
+        <!--            这里可以预计送达时间，读取系统时间，然后加半个小时-->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/spacing_minor"
+            android:text="123456"
+            android:layout_weight="1"
+            android:id="@+id/userID"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="14.0sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/selector_common_item_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/spacing_minor"
+            android:text="金额"
+            android:layout_weight="1"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="16sp" />
+
+        <!--            这里可以预计送达时间，读取系统时间，然后加半个小时-->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/spacing_minor"
+            android:text="12"
+            android:layout_weight="1"
+            android:id="@+id/orderPrice"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="14.0sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="支付"
+        android:textSize="23sp"
+        android:id="@+id/pay_operation"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:layout_gravity="center"/>
+</LinearLayout>

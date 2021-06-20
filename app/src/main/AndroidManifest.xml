@@ -34,7 +34,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodOderingApp">
-        <activity android:name=".merchant.Activity_Merchant_OrderDoneInfo"></activity>
+        <activity android:name=".user.Activity_User_Comment"></activity>
+        <activity android:name=".user.Activity_User_Choose_Address" />
+        <activity android:name=".user.Activity_User_Remark" />
+        <activity android:name=".user.Activity_User_Payment" />
+        <activity android:name=".user.Activity_User_Foodlist" />
+        <activity android:name=".user.Activity_Location" />
+        <activity android:name=".user.Activity_User_Balance" />
+        <activity android:name=".user.Activity_Add_Address" />
+        <activity android:name=".user.Activity_Change_Address" />
+        <activity android:name=".user.Activity_Address_Manage" />
+        <activity android:name=".user.Activity_change_userName" />
+        <activity android:name=".merchant.Activity_Merchant_OrderDoneInfo" />
         <activity android:name=".merchant.Activity_Merchant_changeProductInfo" />
         <activity android:name=".merchant.Activity_Merchant_ProductInfo" />
         <activity android:name=".merchant.Activity_Merchant_StoreInfo" />
@@ -47,6 +58,7 @@
         <activity android:name=".Activity_Login" >
             <intent-filter> <!-- 设置启动的第一个activity -->
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

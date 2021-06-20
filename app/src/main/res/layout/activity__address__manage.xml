@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/dark_gray_bg"
+    android:orientation="vertical"
+    tools:context=".user.Activity_Address_Manage">
+
+    <include layout="@layout/title" />
+
+    <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginTop="6dp"
+    android:background="@color/black" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/addressManageRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_weight="1" />
+
+
+    <TextView
+        android:id="@+id/addAddressTv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/section_height"
+        android:background="@drawable/selector_common_item_bg"
+        android:gravity="center"
+        android:text="+ 添加地址"
+        android:textColor="@color/red"
+        android:textSize="23sp" />
+
+</LinearLayout>

@@ -1,6 +1,5 @@
 package com.example.foododeringapp.user;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,19 +14,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+
 import android.widget.TextView;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.foododeringapp.R;
 import com.example.foododeringapp.control.BaseActivity;
-import com.example.foododeringapp.rider.Activity_Rider_Main;
-import com.example.foododeringapp.rider.fragment.Fragment_Rider_My;
-import com.example.foododeringapp.rider.fragment.Fragment_Rider_New;
-import com.example.foododeringapp.rider.fragment.Fragment_Rider_Sta;
-import com.example.foododeringapp.rider.fragment.Fragment_Rider_Underway;
-import com.example.foododeringapp.user.fragment.Fragment_User_Order_Done;
-import com.example.foododeringapp.user.fragment.Fragment_User_Order_Ing;
+import com.example.foododeringapp.merchant.fragment.Fragment_Merchant_Wait;
+import com.example.foododeringapp.user.fragment.Fragment_User_First;
+import com.example.foododeringapp.user.fragment.Fragment_User_Order;
+import com.example.foododeringapp.user.fragment.Fragment_User_My;
 
 public class Activity_User_Main extends BaseActivity {
     private Toolbar toolbar;
@@ -42,14 +39,14 @@ public class Activity_User_Main extends BaseActivity {
     // 网络连接参数
     private IntentFilter intentFilter;
     //自定义内部类，封装了网络变化判断的过程
-    private Activity_User_Main.NetworkChangeReceiver networkChangeReceiver;
+    private NetworkChangeReceiver networkChangeReceiver;
     public static int networkState = -1;//0：网络不可用  1：网络可用
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        context = Activity_User_Main.this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__user__main);
+        context = Activity_User_Main.this;
         pg = new ProgressDialog(context);
         initStaticView();
     }
@@ -59,43 +56,24 @@ public class Activity_User_Main extends BaseActivity {
      */
     private void initStaticView() {
         toolbar = findViewById(R.id.toolbar);
-        bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
+        bottomNavigationBar = findViewById(R.id.user_bottom_navigation_bar);
         toolbar.setTitle("");
         toolbarText = findViewById(R.id.toolbar_text);
-        toolbarText.setText("首页");
-
-//        setSupportActionBar(toolbar);//使用toolbar,外观功能和ActionBar一致
-
-//        final ActionBar actionBar = getSupportActionBar();//得到ActionBar实例
-//        if (actionBar != null) {
-//            actionBar.setDisplayHomeAsUpEnabled(true);//让导航按钮显示出来
-//            actionBar.setHomeAsUpIndicator(R.mipmap.ic_menu);//设置导航按钮图标
-//        }
+        toolbarText.setText("中南大食堂");
+        //使用toolbar,外观功能和ActionBar一致
+//        setSupportActionBar(toolbar);
         //加载底部导航栏及选中事件
         loadBottomNavigationBar();
-    }
-
-    /**
-     * 动态添加fragment（碎片）
-     *
-     * @param fragment
-     */
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frame_layout, fragment);
-        transaction.commit();
     }
 
     /**
      * 加载底部导航栏及选中事件
      */
     private void loadBottomNavigationBar() {
-        toolbarText.setText("处理中");
-        replaceFragment(new Fragment_User_Order_Ing());
-        bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.nav_wait, "新订单"))
-                .addItem(new BottomNavigationItem(R.mipmap.nav_order, "处理中"))
-                .addItem(new BottomNavigationItem(R.mipmap.nav_store, "订单统计"))
+        toolbarText.setText("首页");
+        replaceFragment(new Fragment_User_First());
+    bottomNavigationBar.addItem(new BottomNavigationItem(R.drawable.ic_baseline_first, "首页"))
+                .addItem(new BottomNavigationItem(R.mipmap.nav_order, "订单管理"))
                 .addItem(new BottomNavigationItem(R.mipmap.nav_my, "我的"))
                 .setMode(BottomNavigationBar.MODE_FIXED)
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC)
@@ -108,20 +86,16 @@ public class Activity_User_Main extends BaseActivity {
             public void onTabSelected(int position) {//未选中 -> 选中
                 switch (position) {
                     case 0:
-                        toolbarText.setText("新订单");
-                        replaceFragment(new Fragment_User_Order_Ing());
+                        toolbarText.setText("首页");
+                        replaceFragment(new Fragment_User_First());
                         break;
                     case 1:
-                        toolbarText.setText("已完成");
-                        replaceFragment(new Fragment_User_Order_Done());
+                        toolbarText.setText("订单");
+                        replaceFragment(new Fragment_User_Order());
                         break;
                     case 2:
-                        toolbarText.setText("订单统计");
-                        replaceFragment(new Fragment_User_Order_Ing());
-                        break;
-                    case 3:
-                        toolbarText.setText("我的");
-                        replaceFragment(new Fragment_User_Order_Ing());
+                        toolbarText.setText("我的中心");
+                        replaceFragment(new Fragment_User_My());
                         break;
                     default:
                         break;
@@ -141,6 +115,18 @@ public class Activity_User_Main extends BaseActivity {
     }
 
     /**
+     * 动态添加fragment（碎片）
+     *
+     * @param fragment
+     */
+    private void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.user_frame_layout, fragment);
+        transaction.commit();
+    }
+
+    /**
      * 获取网络连接状态
      */
     private void getNetworkState() {
@@ -150,9 +136,8 @@ public class Activity_User_Main extends BaseActivity {
         registerReceiver(networkChangeReceiver, intentFilter);
     }
 
-
     /**
-     * 自定义类
+     *
      */
     class NetworkChangeReceiver extends BroadcastReceiver {
         @Override
@@ -168,21 +153,4 @@ public class Activity_User_Main extends BaseActivity {
             }
         }
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        /**
-         *  判断requestCode, resultCode 来确定要执行的代码
-         */
-        /*if (requestCode == 1111 && resultCode == 1222) {
-            toolbarText.setText("处理中");
-            replaceFragment(new Fragment_Rider_Underway());
-            // 在这设置选中你要显示的fragment
-        }*/
-
-    }
-
-
 }
-

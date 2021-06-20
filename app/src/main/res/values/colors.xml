@@ -20,7 +20,7 @@
 
     <!--Setting-->
     <color name="white_bg">#FFFFFF</color>
-    <!--    <color name="dark_gray_bg">#F5F5F5</color>-->
+<!--    <color name="dark_gray_bg">#F5F5F5</color>-->
     <color name="dark_gray_bg">#FBFCFC</color>
 
     <color name="border_line">#c0c0c0</color>
@@ -34,4 +34,6 @@
     <color name="blue">#33b5e5</color>
 
     <color name="transparent">#00000000</color>
+
+<!--    <color name="red">#FF3300</color>-->
 </resources>
